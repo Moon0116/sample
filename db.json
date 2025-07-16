@@ -1,0 +1,1317 @@
+{
+  "transactions": [
+    {
+      "id": "f1c1dc4d",
+      "date": "2025-01-01",
+      "type": "expense",
+      "amount": 59044,
+      "categoryId": "exp9",
+      "memo": "세금 지출"
+    },
+    {
+      "id": "48868c63",
+      "date": "2025-01-01",
+      "type": "expense",
+      "amount": 92043,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "c13b69b8",
+      "date": "2025-01-01",
+      "type": "expense",
+      "amount": 18634,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "94822414",
+      "date": "2025-01-01",
+      "type": "income",
+      "amount": 3500000,
+      "categoryId": "inc1",
+      "memo": "1월 급여월급 수입"
+    },
+    {
+      "id": "9184ec94",
+      "date": "2025-01-02",
+      "type": "expense",
+      "amount": 23946,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "ff475d3f",
+      "date": "2025-01-03",
+      "type": "expense",
+      "amount": 64111,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "cc7ec5af",
+      "date": "2025-01-03",
+      "type": "income",
+      "amount": 23364,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "a924f352",
+      "date": "2025-01-05",
+      "type": "expense",
+      "amount": 40015,
+      "categoryId": "exp9",
+      "memo": "세금 지출"
+    },
+    {
+      "id": "7201e485",
+      "date": "2025-01-06",
+      "type": "expense",
+      "amount": 99847,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "2d997fe0",
+      "date": "2025-01-06",
+      "type": "expense",
+      "amount": 6659,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "2791a542",
+      "date": "2025-01-06",
+      "type": "expense",
+      "amount": 34338,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "b6cb9488",
+      "date": "2025-01-08",
+      "type": "expense",
+      "amount": 63953,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "267450e7",
+      "date": "2025-01-09",
+      "type": "expense",
+      "amount": 39861,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "39578fc2",
+      "date": "2025-01-10",
+      "type": "expense",
+      "amount": 97792,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "d9ab2567",
+      "date": "2025-01-10",
+      "type": "income",
+      "amount": 15393,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "a5425c8c",
+      "date": "2025-01-11",
+      "type": "expense",
+      "amount": 36440,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "ba8ba7e6",
+      "date": "2025-01-12",
+      "type": "expense",
+      "amount": 53293,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "e1640619",
+      "date": "2025-01-12",
+      "type": "expense",
+      "amount": 9361,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "4f7d1e0b",
+      "date": "2025-01-12",
+      "type": "income",
+      "amount": 27321,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "05cef35b",
+      "date": "2025-01-13",
+      "type": "expense",
+      "amount": 59300,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "41229b2e",
+      "date": "2025-01-13",
+      "type": "expense",
+      "amount": 41318,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "944ee755",
+      "date": "2025-01-13",
+      "type": "expense",
+      "amount": 54255,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "8f7b7fc3",
+      "date": "2025-01-14",
+      "type": "expense",
+      "amount": 7409,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "5b30fee4",
+      "date": "2025-01-14",
+      "type": "expense",
+      "amount": 45509,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "5c0462cb",
+      "date": "2025-01-15",
+      "type": "expense",
+      "amount": 91635,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "37138c74",
+      "date": "2025-01-15",
+      "type": "expense",
+      "amount": 55445,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "77430b12",
+      "date": "2025-01-15",
+      "type": "expense",
+      "amount": 54979,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "fa501746",
+      "date": "2025-01-16",
+      "type": "expense",
+      "amount": 41851,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "e8c4d984",
+      "date": "2025-01-17",
+      "type": "expense",
+      "amount": 94131,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "e4a77992",
+      "date": "2025-01-18",
+      "type": "income",
+      "amount": 21865,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "9b862423",
+      "date": "2025-01-19",
+      "type": "income",
+      "amount": 29273,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "8bb778b6",
+      "date": "2025-01-20",
+      "type": "expense",
+      "amount": 60973,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "c021db5d",
+      "date": "2025-01-21",
+      "type": "expense",
+      "amount": 63130,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "b6c43d56",
+      "date": "2025-01-22",
+      "type": "expense",
+      "amount": 78785,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "e0053884",
+      "date": "2025-01-23",
+      "type": "expense",
+      "amount": 72472,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "ee2960ce",
+      "date": "2025-01-24",
+      "type": "expense",
+      "amount": 70699,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "18032674",
+      "date": "2025-01-25",
+      "type": "expense",
+      "amount": 90554,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "c263e4f3",
+      "date": "2025-01-25",
+      "type": "expense",
+      "amount": 55772,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "c5b3cfcf",
+      "date": "2025-01-25",
+      "type": "expense",
+      "amount": 12848,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "fbe740ed",
+      "date": "2025-01-26",
+      "type": "expense",
+      "amount": 75811,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "91cc11b8",
+      "date": "2025-01-26",
+      "type": "expense",
+      "amount": 80962,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "c42f4b5a",
+      "date": "2025-01-26",
+      "type": "expense",
+      "amount": 21635,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "fe33f1cc",
+      "date": "2025-01-27",
+      "type": "expense",
+      "amount": 17056,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "765538a9",
+      "date": "2025-01-27",
+      "type": "expense",
+      "amount": 27029,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "4e743b91",
+      "date": "2025-01-29",
+      "type": "income",
+      "amount": 8814,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "11c177e7",
+      "date": "2025-02-01",
+      "type": "expense",
+      "amount": 46805,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "52bfd7cc",
+      "date": "2025-02-01",
+      "type": "expense",
+      "amount": 40692,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "496d56f7",
+      "date": "2025-02-01",
+      "type": "expense",
+      "amount": 20236,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "2f0d2683",
+      "date": "2025-02-01",
+      "type": "income",
+      "amount": 3500000,
+      "categoryId": "inc1",
+      "memo": "2월 급여월급 수입"
+    },
+    {
+      "id": "474c0c71",
+      "date": "2025-02-02",
+      "type": "expense",
+      "amount": 53322,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "6228b592",
+      "date": "2025-02-02",
+      "type": "expense",
+      "amount": 11728,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "90575713",
+      "date": "2025-02-03",
+      "type": "expense",
+      "amount": 44205,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "5fd16cf9",
+      "date": "2025-02-03",
+      "type": "expense",
+      "amount": 23910,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "19325981",
+      "date": "2025-02-05",
+      "type": "expense",
+      "amount": 84433,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "430ab225",
+      "date": "2025-02-05",
+      "type": "income",
+      "amount": 19025,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "9d9b4276",
+      "date": "2025-02-06",
+      "type": "expense",
+      "amount": 73103,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "c432d834",
+      "date": "2025-02-06",
+      "type": "expense",
+      "amount": 26045,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "01e141f7",
+      "date": "2025-02-06",
+      "type": "expense",
+      "amount": 89897,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "2c6861ae",
+      "date": "2025-02-06",
+      "type": "income",
+      "amount": 11597,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "5497024c",
+      "date": "2025-02-07",
+      "type": "income",
+      "amount": 2930,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "1c99b98d",
+      "date": "2025-02-08",
+      "type": "expense",
+      "amount": 21839,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "b41a751c",
+      "date": "2025-02-08",
+      "type": "income",
+      "amount": 12176,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "d8e54ee5",
+      "date": "2025-02-10",
+      "type": "expense",
+      "amount": 39154,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "665b6cfc",
+      "date": "2025-02-10",
+      "type": "expense",
+      "amount": 36613,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "d369cc63",
+      "date": "2025-02-10",
+      "type": "income",
+      "amount": 13406,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "41ed2b3f",
+      "date": "2025-02-12",
+      "type": "expense",
+      "amount": 63813,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "cbf9a012",
+      "date": "2025-02-13",
+      "type": "expense",
+      "amount": 98219,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "f7141a41",
+      "date": "2025-02-14",
+      "type": "expense",
+      "amount": 80892,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "aa9de010",
+      "date": "2025-02-14",
+      "type": "expense",
+      "amount": 82481,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "35abaad9",
+      "date": "2025-02-15",
+      "type": "expense",
+      "amount": 12280,
+      "categoryId": "exp9",
+      "memo": "세금 지출"
+    },
+    {
+      "id": "d44bc382",
+      "date": "2025-02-16",
+      "type": "expense",
+      "amount": 20691,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "c73937d3",
+      "date": "2025-02-16",
+      "type": "expense",
+      "amount": 97476,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "29ebb017",
+      "date": "2025-02-16",
+      "type": "expense",
+      "amount": 46241,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "4149ad38",
+      "date": "2025-02-17",
+      "type": "expense",
+      "amount": 7681,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "b7abd900",
+      "date": "2025-02-17",
+      "type": "expense",
+      "amount": 70117,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "e0842183",
+      "date": "2025-02-17",
+      "type": "income",
+      "amount": 7984,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "7106f4b7",
+      "date": "2025-02-18",
+      "type": "expense",
+      "amount": 14433,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "dc3616d6",
+      "date": "2025-02-18",
+      "type": "expense",
+      "amount": 89136,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "3b40e368",
+      "date": "2025-02-18",
+      "type": "expense",
+      "amount": 51674,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "1d15456f",
+      "date": "2025-02-19",
+      "type": "expense",
+      "amount": 77265,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "933aa560",
+      "date": "2025-02-20",
+      "type": "expense",
+      "amount": 76643,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "e594099c",
+      "date": "2025-02-20",
+      "type": "expense",
+      "amount": 19140,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "3ee5c43c",
+      "date": "2025-02-21",
+      "type": "expense",
+      "amount": 76623,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "bfa2580c",
+      "date": "2025-02-21",
+      "type": "income",
+      "amount": 5145,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "e7aba70c",
+      "date": "2025-02-22",
+      "type": "income",
+      "amount": 26154,
+      "categoryId": "inc3",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "1eb5906f",
+      "date": "2025-02-23",
+      "type": "expense",
+      "amount": 57071,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "39bbdc32",
+      "date": "2025-02-23",
+      "type": "income",
+      "amount": 29304,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "7311127d",
+      "date": "2025-02-24",
+      "type": "expense",
+      "amount": 22493,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "952872b1",
+      "date": "2025-02-24",
+      "type": "income",
+      "amount": 26032,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "658e2e64",
+      "date": "2025-02-25",
+      "type": "expense",
+      "amount": 96066,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "6baf1da4",
+      "date": "2025-02-25",
+      "type": "expense",
+      "amount": 60287,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "b2987933",
+      "date": "2025-02-25",
+      "type": "expense",
+      "amount": 92429,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "6cd838a8",
+      "date": "2025-02-26",
+      "type": "expense",
+      "amount": 64382,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "74d93914",
+      "date": "2025-02-26",
+      "type": "expense",
+      "amount": 52125,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "945ea590",
+      "date": "2025-03-01",
+      "type": "income",
+      "amount": 3500000,
+      "categoryId": "inc1",
+      "memo": "3월 급여월급 수입"
+    },
+    {
+      "id": "1669a8cc",
+      "date": "2025-03-02",
+      "type": "expense",
+      "amount": 36996,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "f1c43ef4",
+      "date": "2025-03-03",
+      "type": "expense",
+      "amount": 3422,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "39f1eeae",
+      "date": "2025-03-06",
+      "type": "expense",
+      "amount": 21213,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "43b716ea",
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 48977,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "2a22d5f6",
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 68831,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "32072e46",
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 88045,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "26e43fc9",
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 39101,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "b9734a84",
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 80357,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "9539a919",
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 91509,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "c1c243db",
+      "date": "2025-03-09",
+      "type": "expense",
+      "amount": 40630,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "6589431f",
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 4552,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "e2c7f3ea",
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 29651,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "a1ebbdc9",
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 8896,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "a3571206",
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 97007,
+      "categoryId": "exp9",
+      "memo": "세금 지출"
+    },
+    {
+      "id": "3740cf16",
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 80639,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "4baa1f9b",
+      "date": "2025-03-12",
+      "type": "income",
+      "amount": 28233,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "37a04fb7",
+      "date": "2025-03-13",
+      "type": "expense",
+      "amount": 62796,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "950032e9",
+      "date": "2025-03-13",
+      "type": "expense",
+      "amount": 42805,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "c59a836e",
+      "date": "2025-03-14",
+      "type": "expense",
+      "amount": 42397,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "3361ad25",
+      "date": "2025-03-14",
+      "type": "expense",
+      "amount": 26282,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "f091a2ed",
+      "date": "2025-03-15",
+      "type": "expense",
+      "amount": 24516,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "123e49bd",
+      "date": "2025-03-16",
+      "type": "expense",
+      "amount": 67743,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "26115cd1",
+      "date": "2025-03-17",
+      "type": "expense",
+      "amount": 79596,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "90cfca72",
+      "date": "2025-03-18",
+      "type": "expense",
+      "amount": 9324,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "c0588d8d",
+      "date": "2025-03-19",
+      "type": "expense",
+      "amount": 13891,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "91256f8d",
+      "date": "2025-03-19",
+      "type": "expense",
+      "amount": 30788,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "c04653cf",
+      "date": "2025-03-19",
+      "type": "income",
+      "amount": 6405,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "e02ec05e",
+      "date": "2025-03-21",
+      "type": "expense",
+      "amount": 20871,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "0e5ba6e0",
+      "date": "2025-03-21",
+      "type": "expense",
+      "amount": 3972,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "81401a9f",
+      "date": "2025-03-21",
+      "type": "expense",
+      "amount": 98829,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "8904b1b4",
+      "date": "2025-03-24",
+      "type": "expense",
+      "amount": 54666,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "cc874194",
+      "date": "2025-03-24",
+      "type": "expense",
+      "amount": 70255,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "3d4f5dcb",
+      "date": "2025-03-25",
+      "type": "expense",
+      "amount": 77969,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "8aefd0d5",
+      "date": "2025-03-25",
+      "type": "expense",
+      "amount": 29519,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "aaa15a0a",
+      "date": "2025-03-26",
+      "type": "expense",
+      "amount": 98426,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "b8aae643",
+      "date": "2025-03-27",
+      "type": "expense",
+      "amount": 33721,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "67f0a428",
+      "date": "2025-03-27",
+      "type": "expense",
+      "amount": 19772,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "21e8c393",
+      "date": "2025-03-28",
+      "type": "expense",
+      "amount": 40976,
+      "categoryId": "exp5",
+      "memo": "여가 지출"
+    },
+    {
+      "id": "c2616d85",
+      "date": "2025-03-28",
+      "type": "expense",
+      "amount": 97073,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "d02d1bc4",
+      "date": "2025-03-29",
+      "type": "expense",
+      "amount": 45487,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "cd15a298",
+      "date": "2025-03-30",
+      "type": "expense",
+      "amount": 68722,
+      "categoryId": "exp9",
+      "memo": "세금 지출"
+    },
+    {
+      "id": "f3bf5280",
+      "date": "2025-03-30",
+      "type": "expense",
+      "amount": 25230,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "1aa6111a",
+      "date": "2025-03-31",
+      "type": "expense",
+      "amount": 60010,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "9d26c9f0",
+      "date": "2025-03-31",
+      "type": "expense",
+      "amount": 35396,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "1c27524c",
+      "date": "2025-04-01",
+      "type": "expense",
+      "amount": 5028,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "082d4dab",
+      "date": "2025-04-01",
+      "type": "income",
+      "amount": 3500000,
+      "categoryId": "inc1",
+      "memo": "4월 급여월급 수입"
+    },
+    {
+      "id": "75ee220b",
+      "date": "2025-04-02",
+      "type": "expense",
+      "amount": 57345,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "1715787f",
+      "date": "2025-04-03",
+      "type": "expense",
+      "amount": 6778,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "f11d4b48",
+      "date": "2025-04-03",
+      "type": "expense",
+      "amount": 76008,
+      "categoryId": "exp4",
+      "memo": "유흥 지출"
+    },
+    {
+      "id": "d6bc4a9c",
+      "date": "2025-04-03",
+      "type": "expense",
+      "amount": 6286,
+      "categoryId": "exp8",
+      "memo": "교통 지출"
+    },
+    {
+      "id": "244929f0",
+      "date": "2025-04-04",
+      "type": "expense",
+      "amount": 4227,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "53c18f80",
+      "date": "2025-04-04",
+      "type": "expense",
+      "amount": 45985,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "2d175e11",
+      "date": "2025-04-05",
+      "type": "expense",
+      "amount": 69872,
+      "categoryId": "exp2",
+      "memo": "쇼핑 지출"
+    },
+    {
+      "id": "a9587e94",
+      "date": "2025-04-05",
+      "type": "expense",
+      "amount": 4705,
+      "categoryId": "exp3",
+      "memo": "잡화 지출"
+    },
+    {
+      "id": "67bf8d67",
+      "date": "2025-04-05",
+      "type": "income",
+      "amount": 28493,
+      "categoryId": "inc2",
+      "memo": "기타 수입"
+    },
+    {
+      "id": "59e18894",
+      "date": "2025-04-06",
+      "type": "expense",
+      "amount": 62006,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "192f1630",
+      "date": "2025-04-07",
+      "type": "expense",
+      "amount": 53060,
+      "categoryId": "exp1",
+      "memo": "식비 지출"
+    },
+    {
+      "id": "33019214",
+      "date": "2025-04-07",
+      "type": "expense",
+      "amount": 29742,
+      "categoryId": "exp6",
+      "memo": "간식 지출"
+    },
+    {
+      "id": "8ad40811",
+      "date": "2025-04-08",
+      "type": "income",
+      "amount": 27982,
+      "categoryId": "inc4",
+      "memo": "기타 수입"
+    }
+  ],
+  "categories": [
+    {
+      "id": "exp1",
+      "name": "식비",
+      "icon": "bi-cart-fill"
+    },
+    {
+      "id": "exp2",
+      "name": "쇼핑",
+      "icon": "bi-cup-straw"
+    },
+    {
+      "id": "exp3",
+      "name": "잡화",
+      "icon": "bi-cash-coin"
+    },
+    {
+      "id": "exp4",
+      "name": "유흥",
+      "icon": "bi-bus-front"
+    },
+    {
+      "id": "exp5",
+      "name": "여가",
+      "icon": "bi-question-circle"
+    },
+    {
+      "id": "exp6",
+      "name": "간식",
+      "icon": "bi-cart-fill"
+    },
+    {
+      "id": "exp7",
+      "name": "이체",
+      "icon": "bi-cup-straw"
+    },
+    {
+      "id": "exp8",
+      "name": "교통",
+      "icon": "bi-cash-coin"
+    },
+    {
+      "id": "exp9",
+      "name": "세금",
+      "icon": "bi-bus-front"
+    },
+    {
+      "id": "exp10",
+      "name": "기타",
+      "icon": "bi-question-circle"
+    },
+    {
+      "id": "inc1",
+      "name": "근로",
+      "icon": "bi-cart-fill"
+    },
+    {
+      "id": "inc2",
+      "name": "투자",
+      "icon": "bi-cup-straw"
+    },
+    {
+      "id": "inc3",
+      "name": "연금",
+      "icon": "bi-cash-coin"
+    },
+    {
+      "id": "inc4",
+      "name": "기타",
+      "icon": "bi-bus-front"
+    }
+  ],
+  "profile": {
+    "name": "마나아",
+    "birthdate": "2011-10-20",
+    "email": "a@bnef.xom",
+    "job": "sdfsaa",
+    "mbti": "asdfdfdf",
+    "profileImage": "",
+    "id": 1
+  }
+}
