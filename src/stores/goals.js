@@ -345,7 +345,7 @@ export const useGoalsStore = defineStore('goals', {
       })
     },
 
-    async mockDeleteGoal(id) {
+    async mockDeleteGoal() {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })

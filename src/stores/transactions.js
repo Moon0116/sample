@@ -376,7 +376,7 @@ export const useTransactionsStore = defineStore('transactions', {
       })
     },
 
-    async mockDeleteTransaction(id) {
+    async mockDeleteTransaction() {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })

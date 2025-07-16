@@ -30,7 +30,8 @@ export default [
         fetch: 'readonly',
         alert: 'readonly',
         confirm: 'readonly',
-        prompt: 'readonly'
+        prompt: 'readonly',
+        Notification: 'readonly'
       }
     },
     rules: {

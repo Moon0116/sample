@@ -236,7 +236,6 @@ export const useBudgetStore = defineStore('budget', {
     async mockFetchBudgets() {
       return new Promise(resolve => {
         setTimeout(() => {
-          const transactionsStore = useTransactionsStore()
           const mockBudgets = [
             {
               id: 1,
@@ -283,10 +282,8 @@ export const useBudgetStore = defineStore('budget', {
     async mockCreateBudget(budgetData) {
       return new Promise(resolve => {
         setTimeout(() => {
-          const transactionsStore = useTransactionsStore()
-          const category = transactionsStore.categories.find(
-            c => c.id === budgetData.categoryId
-          )
+          // TODO: Get category name from actual category store
+          const category = { name: 'Category' } // Placeholder
 
           const budget = {
             id: Date.now(),
@@ -302,10 +299,8 @@ export const useBudgetStore = defineStore('budget', {
     async mockUpdateBudget(id, budgetData) {
       return new Promise(resolve => {
         setTimeout(() => {
-          const transactionsStore = useTransactionsStore()
-          const category = transactionsStore.categories.find(
-            c => c.id === budgetData.categoryId
-          )
+          // TODO: Get category name from actual category store
+          const category = { name: 'Category' } // Placeholder
 
           const budget = {
             id,
@@ -318,7 +313,7 @@ export const useBudgetStore = defineStore('budget', {
       })
     },
 
-    async mockDeleteBudget(id) {
+    async mockDeleteBudget() {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })
