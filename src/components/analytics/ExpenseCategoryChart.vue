@@ -18,67 +18,67 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
-import { useAnalysisStore } from '@/store/analysisStore';
-import { useTransactionUtils } from '@/composables/useTransactionUtils';
+import { onMounted, computed } from 'vue'
+import { useAnalysisStore } from '@/store/analysisStore'
+import { useTransactionUtils } from '@/composables/useTransactionUtils'
 
 // ECharts 관련 설정
-import { use } from 'echarts/core';
-import { PieChart } from 'echarts/charts';
+import { use } from 'echarts/core'
+import { PieChart } from 'echarts/charts'
 import {
   TitleComponent,
   TooltipComponent,
-  LegendComponent,
-} from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
+  LegendComponent
+} from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
 
 use([
   PieChart,
   TitleComponent,
   TooltipComponent,
   LegendComponent,
-  CanvasRenderer,
-]);
+  CanvasRenderer
+])
 
 //  분석 스토어 사용
-const analysis = useAnalysisStore();
+const analysis = useAnalysisStore()
 // 트랜잭션 유틸리티 사용
-const utils = useTransactionUtils();
+const utils = useTransactionUtils()
 
 //  데이터 불러오기
 onMounted(() => {
-  analysis.fetchAnalysisData();
-});
+  analysis.fetchAnalysisData()
+})
 
 // 카테고리별 지출 요약 (ECharts에 바인딩할 데이터)
 const expenseByCategory = computed(() => {
-  const result = {};
-  analysis.thisMonthExpenses.forEach((t) => {
-    result[t.categoryId] = (result[t.categoryId] || 0) + t.amount;
-  });
+  const result = {}
+  analysis.thisMonthExpenses.forEach(t => {
+    result[t.categoryId] = (result[t.categoryId] || 0) + t.amount
+  })
 
   return Object.entries(result).map(([id, amount]) => ({
     name: utils.getCategoryName(id),
-    value: amount,
-  }));
-});
+    value: amount
+  }))
+})
 
 // 가장 많이 지출한 카테고리 (analysisStore에서 계산된 값 활용)
-const topCategory = computed(() => analysis.topExpenseCategory);
+const topCategory = computed(() => analysis.topExpenseCategory)
 
 // 차트 옵션
 const option = computed(() => ({
   title: {
     text: '이번 달 소비 패턴 분석',
-    left: 'center',
+    left: 'center'
   },
   tooltip: {
     trigger: 'item',
-    formatter: '{b}: {c}원 ({d}%)',
+    formatter: '{b}: {c}원 ({d}%)'
   },
   legend: {
     bottom: 10,
-    left: 'center',
+    left: 'center'
   },
   series: [
     {
@@ -89,15 +89,15 @@ const option = computed(() => ({
         itemStyle: {
           shadowBlur: 10,
           shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
-        },
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
       },
       label: {
-        formatter: '{b}: {d}%',
-      },
-    },
-  ],
-}));
+        formatter: '{b}: {d}%'
+      }
+    }
+  ]
+}))
 </script>
 <style scoped>
 .summary-message {

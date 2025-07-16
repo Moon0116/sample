@@ -1,13 +1,11 @@
 <template>
   <div class="settings-page">
     <div class="settings-header">
-      <button class="back-btn" @click="goBack">
-        ← Back
-      </button>
+      <button class="back-btn" @click="goBack">← Back</button>
       <h1>Settings</h1>
       <div></div>
     </div>
-    
+
     <div class="settings-content">
       <div class="settings-section">
         <h2>Preferences</h2>
@@ -25,7 +23,7 @@
               <option value="KRW">KRW (₩)</option>
             </select>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Language</h3>
@@ -38,7 +36,7 @@
               <option value="zh">中文</option>
             </select>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Theme</h3>
@@ -52,7 +50,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="settings-section">
         <h2>Notifications</h2>
         <div class="settings-group">
@@ -62,35 +60,35 @@
               <p>Receive notifications on your device</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="settings.pushNotifications" />
+              <input v-model="settings.pushNotifications" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Email Notifications</h3>
               <p>Receive notifications via email</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="settings.emailNotifications" />
+              <input v-model="settings.emailNotifications" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Budget Alerts</h3>
               <p>Get notified when approaching budget limits</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="settings.budgetAlerts" />
+              <input v-model="settings.budgetAlerts" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <div class="settings-section">
         <h2>Privacy & Security</h2>
         <div class="settings-group">
@@ -100,11 +98,11 @@
               <p>Use fingerprint or face recognition</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="settings.biometricLogin" />
+              <input v-model="settings.biometricLogin" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Auto-lock</h3>
@@ -117,20 +115,20 @@
               <option value="15min">15 minutes</option>
             </select>
           </div>
-          
+
           <div class="setting-item">
             <div class="setting-info">
               <h3>Data Backup</h3>
               <p>Automatically backup your data</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="settings.dataBackup" />
+              <input v-model="settings.dataBackup" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <div class="settings-section">
         <h2>Data Management</h2>
         <div class="settings-group">
@@ -141,7 +139,7 @@
             </div>
             <div class="setting-arrow">›</div>
           </div>
-          
+
           <div class="setting-item clickable" @click="resetSettings">
             <div class="setting-info">
               <h3>Reset Settings</h3>
@@ -151,11 +149,9 @@
           </div>
         </div>
       </div>
-      
+
       <div class="save-section">
-        <button class="save-btn" @click="saveSettings">
-          Save Changes
-        </button>
+        <button class="save-btn" @click="saveSettings">Save Changes</button>
       </div>
     </div>
   </div>
@@ -224,7 +220,7 @@ export default {
 .settings-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -263,7 +259,7 @@ export default {
 .settings-group {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -340,7 +336,7 @@ export default {
 
 .toggle-slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 3px;

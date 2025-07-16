@@ -2,35 +2,33 @@
   <div class="categories-page">
     <div class="categories-header">
       <h1>Categories</h1>
-      <button class="add-btn" @click="addCategory">
-        + Add Category
-      </button>
+      <button class="add-btn" @click="addCategory">+ Add Category</button>
     </div>
-    
+
     <div class="categories-content">
       <div class="category-tabs">
-        <button 
-          class="tab-btn" 
+        <button
+          class="tab-btn"
           :class="{ active: activeTab === 'expense' }"
           @click="setActiveTab('expense')"
         >
           Expense Categories
         </button>
-        <button 
-          class="tab-btn" 
+        <button
+          class="tab-btn"
           :class="{ active: activeTab === 'income' }"
           @click="setActiveTab('income')"
         >
           Income Categories
         </button>
       </div>
-      
+
       <div class="categories-list">
         <div class="category-grid">
-          <div 
-            class="category-card" 
-            v-for="category in filteredCategories" 
+          <div
+            v-for="category in filteredCategories"
             :key="category.id"
+            class="category-card"
             @click="viewCategory(category.id)"
           >
             <div class="category-icon" :style="{ background: category.color }">
@@ -38,47 +36,54 @@
             </div>
             <div class="category-info">
               <h3>{{ category.name }}</h3>
-              <p class="category-count">{{ category.transactionCount }} transactions</p>
+              <p class="category-count">
+                {{ category.transactionCount }} transactions
+              </p>
               <p class="category-amount" :class="category.type">
-                {{ category.type === 'income' ? '+' : '-' }}${{ category.totalAmount.toLocaleString() }}
+                {{ category.type === 'income' ? '+' : '-' }}${{
+                  category.totalAmount.toLocaleString()
+                }}
               </p>
             </div>
             <div class="category-actions">
-              <button class="action-btn" @click.stop="editCategory(category.id)">
+              <button
+                class="action-btn"
+                @click.stop="editCategory(category.id)"
+              >
                 ✏️
               </button>
-              <button class="action-btn delete" @click.stop="deleteCategory(category.id)">
+              <button
+                class="action-btn delete"
+                @click.stop="deleteCategory(category.id)"
+              >
                 🗑️
               </button>
             </div>
           </div>
         </div>
-        
+
         <div v-if="filteredCategories.length === 0" class="empty-state">
           <div class="empty-icon">📁</div>
           <h3>No {{ activeTab }} categories</h3>
-          <p>Create your first {{ activeTab }} category to organize your transactions.</p>
+          <p>
+            Create your first {{ activeTab }} category to organize your
+            transactions.
+          </p>
           <button class="btn-primary" @click="addCategory">
             Add {{ activeTab }} Category
           </button>
         </div>
       </div>
     </div>
-    
+
     <div class="bottom-nav">
       <nav class="nav-tabs">
-        <router-link to="/dashboard" class="nav-item">
-          Dashboard
-        </router-link>
+        <router-link to="/dashboard" class="nav-item"> Dashboard </router-link>
         <router-link to="/transactions" class="nav-item">
           Transactions
         </router-link>
-        <router-link to="/analytics" class="nav-item">
-          Analytics
-        </router-link>
-        <router-link to="/profile" class="nav-item">
-          Profile
-        </router-link>
+        <router-link to="/analytics" class="nav-item"> Analytics </router-link>
+        <router-link to="/profile" class="nav-item"> Profile </router-link>
       </nav>
     </div>
   </div>
@@ -146,7 +151,7 @@ export default {
           transactionCount: 3,
           totalAmount: 150
         },
-        
+
         // Income Categories
         {
           id: 7,
@@ -189,7 +194,9 @@ export default {
   },
   computed: {
     filteredCategories() {
-      return this.categories.filter(category => category.type === this.activeTab)
+      return this.categories.filter(
+        category => category.type === this.activeTab
+      )
     }
   },
   methods: {
@@ -227,7 +234,7 @@ export default {
 .categories-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -258,7 +265,7 @@ export default {
   border-radius: 8px;
   padding: 0.25rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tab-btn {
@@ -288,15 +295,17 @@ export default {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   position: relative;
 }
 
 .category-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .category-icon {

@@ -5,23 +5,21 @@
         <h1>Forgot Password</h1>
         <p>Enter your email to reset your password</p>
       </div>
-      
+
       <form class="forgot-password-form" @submit.prevent="handleForgotPassword">
         <div class="form-group">
           <label>Email</label>
-          <input 
-            type="email" 
-            v-model="email" 
+          <input
+            v-model="email"
+            type="email"
             placeholder="Enter your email"
             required
           />
         </div>
-        
-        <button type="submit" class="btn-reset">
-          Send Reset Link
-        </button>
+
+        <button type="submit" class="btn-reset">Send Reset Link</button>
       </form>
-      
+
       <div class="back-link">
         <router-link to="/login">← Back to Login</router-link>
       </div>

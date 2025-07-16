@@ -7,8 +7,8 @@
         </h3>
         <button
           class="btn btn-close"
-          @click="handleClose"
           aria-label="닫기"
+          @click="handleClose"
         ></button>
       </div>
 
@@ -101,90 +101,90 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
-import { useTransactionStore } from '@/store/transactionStore'; // 경로 확인
+import { ref, computed, watch, onMounted } from 'vue'
+import { useTransactionStore } from '@/store/transactionStore' // 경로 확인
 
-const store = useTransactionStore();
+const store = useTransactionStore()
 
 const props = defineProps({
   isOpen: Boolean, // 모달 열림 상태 (애니메이션 등에 필요할 수 있음)
   editTransaction: {
     // 수정할 거래 데이터 (없으면 null)
     type: Object,
-    default: null,
-  },
-});
+    default: null
+  }
+})
 
-const emit = defineEmits(['close', 'save']);
+const emit = defineEmits(['close', 'save'])
 
 // --- 로컬 폼 상태 ---
-const type = ref('expense'); // 기본값을 '지출'로 변경 (선호에 따라)
-const date = ref('');
-const amount = ref('');
-const selectedCategoryId = ref(''); // 카테고리 ID를 저장할 ref
-const memo = ref('');
-const showError = ref(false); // 유효성 검사 에러 표시 여부
+const type = ref('expense') // 기본값을 '지출'로 변경 (선호에 따라)
+const date = ref('')
+const amount = ref('')
+const selectedCategoryId = ref('') // 카테고리 ID를 저장할 ref
+const memo = ref('')
+const showError = ref(false) // 유효성 검사 에러 표시 여부
 
 // 수정 모드인지 계산
-const isEditMode = computed(() => !!props.editTransaction);
+const isEditMode = computed(() => !!props.editTransaction)
 
 // --- 카테고리 옵션 계산 (수정됨) ---
 const categoryOptions = computed(() => {
   // store.categories에서 현재 type (income/expense)에 맞는 카테고리만 필터링
   // 카테고리 객체에 type 속성이 있다고 가정 (예: { id: 'exp1', name: '식비', type: 'expense', icon: '...' })
   // 만약 type 속성이 없다면, id prefix ('exp'/'inc')로 구분해야 함
-  return store.categories.filter((cat) => {
+  return store.categories.filter(cat => {
     // category 객체에 type 속성이 있다면:
     // return cat.type === type.value;
 
     // category 객체에 type 속성이 없고 id로 구분해야 한다면:
     if (type.value === 'income') {
-      return cat.id.startsWith('inc');
+      return cat.id.startsWith('inc')
     } else {
-      return cat.id.startsWith('exp');
+      return cat.id.startsWith('exp')
     }
-  });
-});
+  })
+})
 
 // --- 폼 초기화 함수 ---
 const resetForm = () => {
   // 수정 모드가 아니고, props.editTransaction이 없을 때만 초기화
   if (!isEditMode.value) {
-    type.value = 'expense'; // 기본값
-    date.value = new Date().toISOString().split('T')[0]; // 오늘 날짜
-    amount.value = '';
-    selectedCategoryId.value = ''; // 카테고리 ID 초기화
-    memo.value = '';
+    type.value = 'expense' // 기본값
+    date.value = new Date().toISOString().split('T')[0] // 오늘 날짜
+    amount.value = ''
+    selectedCategoryId.value = '' // 카테고리 ID 초기화
+    memo.value = ''
   }
-  showError.value = false; // 에러 표시 초기화
-};
+  showError.value = false // 에러 표시 초기화
+}
 
 // --- 수정 데이터 로드 (수정됨) ---
 // props.editTransaction이 변경될 때 폼 데이터 채우기
 watch(
   () => props.editTransaction,
-  (newVal) => {
+  newVal => {
     if (newVal) {
-      console.log('Editing transaction:', newVal); // 수정 데이터 확인
-      type.value = newVal.type;
+      console.log('Editing transaction:', newVal) // 수정 데이터 확인
+      type.value = newVal.type
       // 날짜 형식이 YYYY-MM-DD 인지 확인 필요, 아닐 경우 변환
-      date.value = newVal.date.split('T')[0]; // 'YYYY-MM-DD' 형식으로 가정
-      amount.value = newVal.amount;
-      selectedCategoryId.value = newVal.categoryId; // categoryId 설정
-      memo.value = newVal.memo || '';
-      showError.value = false; // 수정 시작 시 에러 숨김
+      date.value = newVal.date.split('T')[0] // 'YYYY-MM-DD' 형식으로 가정
+      amount.value = newVal.amount
+      selectedCategoryId.value = newVal.categoryId // categoryId 설정
+      memo.value = newVal.memo || ''
+      showError.value = false // 수정 시작 시 에러 숨김
     } else {
       // editTransaction이 null이 되면 (닫히거나 추가 모드) 폼 초기화
-      resetForm();
+      resetForm()
     }
   },
   { immediate: true } // 컴포넌트 로드 시 즉시 실행
-);
+)
 
 // --- 저장 처리 (수정됨) ---
 const handleSave = async () => {
   // 유효성 검사
-  showError.value = true; // 일단 에러 표시 플래그 활성화
+  showError.value = true // 일단 에러 표시 플래그 활성화
   if (
     !date.value ||
     !amount.value ||
@@ -194,57 +194,57 @@ const handleSave = async () => {
     console.log('Validation failed:', {
       date: date.value,
       amount: amount.value,
-      categoryId: selectedCategoryId.value,
-    });
-    return; // 필수 값 없으면 중단
+      categoryId: selectedCategoryId.value
+    })
+    return // 필수 값 없으면 중단
   }
-  showError.value = false; // 유효성 통과
+  showError.value = false // 유효성 통과
 
   const transactionData = {
     type: type.value,
     date: date.value,
     amount: Number(amount.value),
     categoryId: selectedCategoryId.value, // categoryId 사용
-    memo: memo.value,
-  };
-  console.log('Saving transaction:', transactionData);
+    memo: memo.value
+  }
+  console.log('Saving transaction:', transactionData)
 
   try {
-    let result;
+    let result
     if (isEditMode.value) {
-      console.log('Calling updateTransaction');
+      console.log('Calling updateTransaction')
       result = await store.updateTransaction(
         props.editTransaction.id,
         transactionData
-      );
+      )
     } else {
-      console.log('Calling addTransaction');
-      result = await store.addTransaction(transactionData);
+      console.log('Calling addTransaction')
+      result = await store.addTransaction(transactionData)
     }
 
     // 저장/수정 성공 시
     if (result.success) {
-      handleClose(true); // 저장 후 닫기 (save 이벤트 발생 O)
+      handleClose(true) // 저장 후 닫기 (save 이벤트 발생 O)
     } else {
       // 실패 시 스토어에서 반환된 에러 메시지 사용
-      alert(`저장 실패: ${result.error || '알 수 없는 오류'}`);
+      alert(`저장 실패: ${result.error || '알 수 없는 오류'}`)
     }
   } catch (error) {
     // 네트워크 오류 등 예외 처리
-    console.error('거래 저장/수정 중 예외 발생:', error);
-    alert('거래 처리 중 오류가 발생했습니다.');
+    console.error('거래 저장/수정 중 예외 발생:', error)
+    alert('거래 처리 중 오류가 발생했습니다.')
   }
-};
+}
 
 // --- 모달 닫기 ---
 // isSaved: 저장 성공 후 닫히는 경우 true
 const handleClose = (isSaved = false) => {
-  resetForm(); // 닫기 전에 폼 초기화
+  resetForm() // 닫기 전에 폼 초기화
   if (isSaved) {
-    emit('save'); // 저장 성공 시 save 이벤트 발생
+    emit('save') // 저장 성공 시 save 이벤트 발생
   }
-  emit('close'); // 항상 close 이벤트 발생
-};
+  emit('close') // 항상 close 이벤트 발생
+}
 
 // 컴포넌트가 처음 마운트될 때 폼 초기화
 // (watch immediate:true 때문에 이미 초기화될 수 있으므로 필요 없을 수도 있음)

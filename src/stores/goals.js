@@ -8,19 +8,19 @@ export const useGoalsStore = defineStore('goals', {
   }),
 
   getters: {
-    activeGoals: (state) => {
+    activeGoals: state => {
       return state.goals.filter(goal => goal.status === 'active')
     },
-    
-    completedGoals: (state) => {
+
+    completedGoals: state => {
       return state.goals.filter(goal => goal.status === 'completed')
     },
-    
-    pausedGoals: (state) => {
+
+    pausedGoals: state => {
       return state.goals.filter(goal => goal.status === 'paused')
     },
-    
-    goalsByCategory: (state) => {
+
+    goalsByCategory: state => {
       const categories = {}
       state.goals.forEach(goal => {
         if (!categories[goal.category]) {
@@ -30,24 +30,31 @@ export const useGoalsStore = defineStore('goals', {
       })
       return categories
     },
-    
-    goalsProgress: (state) => {
+
+    goalsProgress: state => {
       return state.goals.map(goal => {
-        const progress = goal.targetAmount > 0 ? (goal.currentAmount / goal.targetAmount) * 100 : 0
+        const progress =
+          goal.targetAmount > 0
+            ? (goal.currentAmount / goal.targetAmount) * 100
+            : 0
         const remaining = goal.targetAmount - goal.currentAmount
-        const daysLeft = goal.targetDate ? Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24)) : null
-        
+        const daysLeft = goal.targetDate
+          ? Math.ceil(
+              (new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24)
+            )
+          : null
+
         // Calculate required monthly/weekly contribution
         let requiredMonthly = 0
         let requiredWeekly = 0
-        
+
         if (daysLeft && daysLeft > 0 && remaining > 0) {
           const monthsLeft = daysLeft / 30
           const weeksLeft = daysLeft / 7
           requiredMonthly = monthsLeft > 0 ? remaining / monthsLeft : remaining
           requiredWeekly = weeksLeft > 0 ? remaining / weeksLeft : remaining
         }
-        
+
         return {
           ...goal,
           progress: Math.min(progress, 100),
@@ -60,16 +67,19 @@ export const useGoalsStore = defineStore('goals', {
         }
       })
     },
-    
-    goalsSummary: (state) => {
+
+    goalsSummary: state => {
       const progress = state.goalsProgress
       const totalGoals = progress.length
       const activeGoals = progress.filter(g => g.status === 'active').length
-      const completedGoals = progress.filter(g => g.status === 'completed').length
+      const completedGoals = progress.filter(
+        g => g.status === 'completed'
+      ).length
       const totalTarget = progress.reduce((sum, g) => sum + g.targetAmount, 0)
       const totalSaved = progress.reduce((sum, g) => sum + g.currentAmount, 0)
-      const overallProgress = totalTarget > 0 ? (totalSaved / totalTarget) * 100 : 0
-      
+      const overallProgress =
+        totalTarget > 0 ? (totalSaved / totalTarget) * 100 : 0
+
       return {
         totalGoals,
         activeGoals,
@@ -81,14 +91,14 @@ export const useGoalsStore = defineStore('goals', {
         nearDeadlineGoals: progress.filter(g => g.isNearDeadline).length
       }
     },
-    
-    upcomingMilestones: (state) => {
+
+    upcomingMilestones: state => {
       return state.goalsProgress
         .filter(goal => goal.status === 'active')
         .map(goal => {
           const milestones = []
           const milestonePercentages = [25, 50, 75, 90, 100]
-          
+
           milestonePercentages.forEach(percentage => {
             const milestoneAmount = (goal.targetAmount * percentage) / 100
             if (goal.currentAmount < milestoneAmount) {
@@ -101,7 +111,7 @@ export const useGoalsStore = defineStore('goals', {
               })
             }
           })
-          
+
           return milestones
         })
         .flat()
@@ -114,7 +124,7 @@ export const useGoalsStore = defineStore('goals', {
     async fetchGoals() {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const goals = await this.mockFetchGoals()
@@ -131,7 +141,7 @@ export const useGoalsStore = defineStore('goals', {
     async createGoal(goalData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const goal = await this.mockCreateGoal(goalData)
@@ -148,7 +158,7 @@ export const useGoalsStore = defineStore('goals', {
     async updateGoal(id, goalData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const goal = await this.mockUpdateGoal(id, goalData)
@@ -168,7 +178,7 @@ export const useGoalsStore = defineStore('goals', {
     async deleteGoal(id) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         await this.mockDeleteGoal(id)
@@ -185,28 +195,35 @@ export const useGoalsStore = defineStore('goals', {
     async contributeToGoal(id, amount, description = '') {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
-        const contribution = await this.mockContributeToGoal(id, amount, description)
-        
+        const contribution = await this.mockContributeToGoal(
+          id,
+          amount,
+          description
+        )
+
         const goalIndex = this.goals.findIndex(g => g.id === id)
         if (goalIndex !== -1) {
           this.goals[goalIndex].currentAmount += amount
-          
+
           // Check if goal is completed
-          if (this.goals[goalIndex].currentAmount >= this.goals[goalIndex].targetAmount) {
+          if (
+            this.goals[goalIndex].currentAmount >=
+            this.goals[goalIndex].targetAmount
+          ) {
             this.goals[goalIndex].status = 'completed'
             this.goals[goalIndex].completedAt = new Date().toISOString()
           }
-          
+
           // Add contribution to history
           if (!this.goals[goalIndex].contributions) {
             this.goals[goalIndex].contributions = []
           }
           this.goals[goalIndex].contributions.unshift(contribution)
         }
-        
+
         return { success: true, contribution }
       } catch (error) {
         this.error = error.message
@@ -225,7 +242,7 @@ export const useGoalsStore = defineStore('goals', {
     },
 
     async completeGoal(id) {
-      return this.updateGoal(id, { 
+      return this.updateGoal(id, {
         status: 'completed',
         completedAt: new Date().toISOString()
       })
@@ -237,7 +254,7 @@ export const useGoalsStore = defineStore('goals', {
 
     // Mock API methods - replace with actual API calls
     async mockFetchGoals() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const mockGoals = [
             {
@@ -300,7 +317,7 @@ export const useGoalsStore = defineStore('goals', {
     },
 
     async mockCreateGoal(goalData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const goal = {
             id: Date.now(),
@@ -316,7 +333,7 @@ export const useGoalsStore = defineStore('goals', {
     },
 
     async mockUpdateGoal(id, goalData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const goal = {
             id,
@@ -329,7 +346,7 @@ export const useGoalsStore = defineStore('goals', {
     },
 
     async mockDeleteGoal(id) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })
         }, 500)
@@ -337,7 +354,7 @@ export const useGoalsStore = defineStore('goals', {
     },
 
     async mockContributeToGoal(id, amount, description) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const contribution = {
             id: Date.now(),

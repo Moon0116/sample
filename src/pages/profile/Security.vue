@@ -1,13 +1,11 @@
 <template>
   <div class="security-page">
     <div class="security-header">
-      <button class="back-btn" @click="goBack">
-        ← Back
-      </button>
+      <button class="back-btn" @click="goBack">← Back</button>
       <h1>Security</h1>
       <div></div>
     </div>
-    
+
     <div class="security-content">
       <div class="security-section">
         <h2>Password</h2>
@@ -19,7 +17,7 @@
             </div>
             <div class="security-arrow">›</div>
           </div>
-          
+
           <div class="security-item">
             <div class="security-info">
               <h3>Password Strength</h3>
@@ -33,7 +31,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="security-section">
         <h2>Two-Factor Authentication</h2>
         <div class="security-group">
@@ -43,36 +41,47 @@
               <p>Receive codes via text message</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="security.smsAuth" @change="toggleSmsAuth" />
+              <input
+                v-model="security.smsAuth"
+                type="checkbox"
+                @change="toggleSmsAuth"
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="security-item">
             <div class="security-info">
               <h3>Email Authentication</h3>
               <p>Receive codes via email</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="security.emailAuth" @change="toggleEmailAuth" />
+              <input
+                v-model="security.emailAuth"
+                type="checkbox"
+                @change="toggleEmailAuth"
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="security-item clickable" @click="setupAuthenticator">
             <div class="security-info">
               <h3>Authenticator App</h3>
               <p>Use Google Authenticator or similar app</p>
             </div>
             <div class="security-status">
-              <span class="status-badge" :class="security.authenticatorApp ? 'enabled' : 'disabled'">
+              <span
+                class="status-badge"
+                :class="security.authenticatorApp ? 'enabled' : 'disabled'"
+              >
                 {{ security.authenticatorApp ? 'Enabled' : 'Disabled' }}
               </span>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="security-section">
         <h2>Login Security</h2>
         <div class="security-group">
@@ -82,11 +91,11 @@
               <p>Use fingerprint or face recognition</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="security.biometricLogin" />
+              <input v-model="security.biometricLogin" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="security-item">
             <div class="security-info">
               <h3>Auto-lock Timer</h3>
@@ -100,7 +109,7 @@
               <option value="30min">30 minutes</option>
             </select>
           </div>
-          
+
           <div class="security-item clickable" @click="viewLoginHistory">
             <div class="security-info">
               <h3>Login History</h3>
@@ -110,7 +119,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="security-section">
         <h2>Data Protection</h2>
         <div class="security-group">
@@ -120,22 +129,26 @@
               <p>Encrypt sensitive data</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="security.dataEncryption" disabled />
+              <input
+                v-model="security.dataEncryption"
+                type="checkbox"
+                disabled
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="security-item">
             <div class="security-info">
               <h3>Secure Backup</h3>
               <p>Encrypted cloud backup</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="security.secureBackup" />
+              <input v-model="security.secureBackup" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="security-item clickable" @click="downloadBackup">
             <div class="security-info">
               <h3>Download Backup</h3>
@@ -145,18 +158,21 @@
           </div>
         </div>
       </div>
-      
+
       <div class="security-section danger">
         <h2>Account Actions</h2>
         <div class="security-group">
-          <div class="security-item clickable danger" @click="deactivateAccount">
+          <div
+            class="security-item clickable danger"
+            @click="deactivateAccount"
+          >
             <div class="security-info">
               <h3>Deactivate Account</h3>
               <p>Temporarily disable your account</p>
             </div>
             <div class="security-arrow">›</div>
           </div>
-          
+
           <div class="security-item clickable danger" @click="deleteAccount">
             <div class="security-info">
               <h3>Delete Account</h3>
@@ -225,7 +241,11 @@ export default {
       console.log('Download backup')
     },
     deactivateAccount() {
-      if (confirm('Are you sure you want to deactivate your account? You can reactivate it later.')) {
+      if (
+        confirm(
+          'Are you sure you want to deactivate your account? You can reactivate it later.'
+        )
+      ) {
         // TODO: Implement account deactivation
         console.log('Deactivate account')
       }
@@ -235,7 +255,9 @@ export default {
       if (confirmation === 'DELETE') {
         // TODO: Implement account deletion
         console.log('Delete account')
-        alert('Account deletion initiated. You will receive a confirmation email.')
+        alert(
+          'Account deletion initiated. You will receive a confirmation email.'
+        )
       }
     }
   }
@@ -251,7 +273,7 @@ export default {
 .security-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -294,7 +316,7 @@ export default {
 .security-group {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -379,7 +401,7 @@ export default {
 
 .toggle-slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 3px;

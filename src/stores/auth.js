@@ -10,27 +10,27 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   getters: {
-    isLoggedIn: (state) => !!state.token && !!state.user,
-    userName: (state) => state.user?.name || '',
-    userEmail: (state) => state.user?.email || ''
+    isLoggedIn: state => !!state.token && !!state.user,
+    userName: state => state.user?.name || '',
+    userEmail: state => state.user?.email || ''
   },
 
   actions: {
     async login(credentials) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const response = await this.mockLogin(credentials)
-        
+
         this.token = response.token
         this.user = response.user
         this.isAuthenticated = true
-        
+
         localStorage.setItem('token', response.token)
         localStorage.setItem('user', JSON.stringify(response.user))
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -43,18 +43,18 @@ export const useAuthStore = defineStore('auth', {
     async register(userData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const response = await this.mockRegister(userData)
-        
+
         this.token = response.token
         this.user = response.user
         this.isAuthenticated = true
-        
+
         localStorage.setItem('token', response.token)
         localStorage.setItem('user', JSON.stringify(response.user))
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -67,15 +67,15 @@ export const useAuthStore = defineStore('auth', {
     async logout() {
       try {
         // TODO: Call logout API if needed
-        
+
         this.token = null
         this.user = null
         this.isAuthenticated = false
         this.error = null
-        
+
         localStorage.removeItem('token')
         localStorage.removeItem('user')
-        
+
         return { success: true }
       } catch (error) {
         console.error('Logout error:', error)
@@ -86,7 +86,7 @@ export const useAuthStore = defineStore('auth', {
     async forgotPassword(email) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         await this.mockForgotPassword(email)
@@ -102,7 +102,7 @@ export const useAuthStore = defineStore('auth', {
     async resetPassword(token, newPassword) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         await this.mockResetPassword(token, newPassword)
@@ -118,14 +118,14 @@ export const useAuthStore = defineStore('auth', {
     async updateProfile(userData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const response = await this.mockUpdateProfile(userData)
-        
+
         this.user = { ...this.user, ...response.user }
         localStorage.setItem('user', JSON.stringify(this.user))
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -138,7 +138,7 @@ export const useAuthStore = defineStore('auth', {
     initializeAuth() {
       const token = localStorage.getItem('token')
       const user = localStorage.getItem('user')
-      
+
       if (token && user) {
         this.token = token
         this.user = JSON.parse(user)
@@ -154,7 +154,10 @@ export const useAuthStore = defineStore('auth', {
     async mockLogin(credentials) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          if (credentials.email === 'user@example.com' && credentials.password === 'password') {
+          if (
+            credentials.email === 'user@example.com' &&
+            credentials.password === 'password'
+          ) {
             resolve({
               token: 'mock-jwt-token-' + Date.now(),
               user: {
@@ -218,7 +221,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async mockUpdateProfile(userData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({
             user: userData

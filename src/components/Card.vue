@@ -1,253 +1,108 @@
 <template>
   <div :class="cardClasses" @click="handleClick">
-    <div v-if="$slots.header || title" class="card-header">
+    <div
+      v-if="$slots.header || title"
+      class="border-b border-gray-200 bg-gray-50 px-4 py-3"
+    >
       <slot name="header">
-        <h3 v-if="title" class="card-title">{{ title }}</h3>
+        <h3 v-if="title" class="text-lg font-semibold text-gray-900">
+          {{ title }}
+        </h3>
       </slot>
-      <div v-if="$slots.actions" class="card-actions">
+      <div v-if="$slots.actions" class="flex items-center gap-2">
         <slot name="actions"></slot>
       </div>
     </div>
-    
-    <div class="card-body">
+
+    <div class="p-4">
       <slot></slot>
     </div>
-    
-    <div v-if="$slots.footer" class="card-footer">
+
+    <div
+      v-if="$slots.footer"
+      class="border-t border-gray-200 bg-gray-50 px-4 py-3"
+    >
       <slot name="footer"></slot>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Card',
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    variant: {
-      type: String,
-      default: 'default',
-      validator: value => ['default', 'primary', 'success', 'warning', 'danger', 'info'].includes(value)
-    },
-    size: {
-      type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].includes(value)
-    },
-    hoverable: {
-      type: Boolean,
-      default: false
-    },
-    clickable: {
-      type: Boolean,
-      default: false
-    },
-    bordered: {
-      type: Boolean,
-      default: true
-    },
-    shadow: {
-      type: String,
-      default: 'medium',
-      validator: value => ['none', 'small', 'medium', 'large'].includes(value)
-    }
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  title: {
+    type: String,
+    default: ''
   },
-  emits: ['click'],
-  computed: {
-    cardClasses() {
-      return [
-        'card',
-        `card-${this.variant}`,
-        `card-${this.size}`,
-        `card-shadow-${this.shadow}`,
-        {
-          'card-hoverable': this.hoverable,
-          'card-clickable': this.clickable,
-          'card-bordered': this.bordered
-        }
-      ]
-    }
+  variant: {
+    type: String,
+    default: 'default',
+    validator: value =>
+      ['default', 'primary', 'success', 'warning', 'danger', 'info'].includes(
+        value
+      )
   },
-  methods: {
-    handleClick(event) {
-      if (this.clickable) {
-        this.$emit('click', event)
-      }
-    }
+  hoverable: {
+    type: Boolean,
+    default: false
+  },
+  clickable: {
+    type: Boolean,
+    default: false
+  },
+  shadow: {
+    type: String,
+    default: 'medium',
+    validator: value => ['none', 'small', 'medium', 'large'].includes(value)
+  }
+})
+
+const emit = defineEmits(['click'])
+
+const cardClasses = computed(() => {
+  const baseClasses =
+    'bg-white rounded-lg overflow-hidden transition-all duration-200'
+
+  const shadowClasses = {
+    none: '',
+    small: 'shadow-sm',
+    medium: 'shadow-md',
+    large: 'shadow-lg'
+  }
+
+  const variantClasses = {
+    default: 'border border-gray-200',
+    primary: 'border border-blue-200',
+    success: 'border border-green-200',
+    warning: 'border border-yellow-200',
+    danger: 'border border-red-200',
+    info: 'border border-cyan-200'
+  }
+
+  const interactiveClasses = []
+  if (props.hoverable) {
+    interactiveClasses.push('hover:-translate-y-1 hover:shadow-lg')
+  }
+  if (props.clickable) {
+    interactiveClasses.push(
+      'cursor-pointer hover:-translate-y-0.5 hover:shadow-md active:translate-y-0'
+    )
+  }
+
+  return [
+    baseClasses,
+    shadowClasses[props.shadow],
+    variantClasses[props.variant],
+    ...interactiveClasses
+  ]
+    .filter(Boolean)
+    .join(' ')
+})
+
+const handleClick = event => {
+  if (props.clickable) {
+    emit('click', event)
   }
 }
 </script>
-
-<style scoped>
-.card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.2s ease-in-out;
-}
-
-/* Borders */
-.card-bordered {
-  border: 1px solid #e1e5e9;
-}
-
-/* Shadows */
-.card-shadow-none {
-  box-shadow: none;
-}
-
-.card-shadow-small {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.card-shadow-medium {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-shadow-large {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Sizes */
-.card-small {
-  font-size: 0.875rem;
-}
-
-.card-small .card-header,
-.card-small .card-body,
-.card-small .card-footer {
-  padding: 0.75rem;
-}
-
-.card-medium .card-header,
-.card-medium .card-body,
-.card-medium .card-footer {
-  padding: 1rem;
-}
-
-.card-large {
-  font-size: 1.125rem;
-}
-
-.card-large .card-header,
-.card-large .card-body,
-.card-large .card-footer {
-  padding: 1.5rem;
-}
-
-/* Variants */
-.card-primary {
-  border-color: #667eea;
-}
-
-.card-primary .card-header {
-  background-color: #667eea;
-  color: white;
-}
-
-.card-success {
-  border-color: #28a745;
-}
-
-.card-success .card-header {
-  background-color: #28a745;
-  color: white;
-}
-
-.card-warning {
-  border-color: #ffc107;
-}
-
-.card-warning .card-header {
-  background-color: #ffc107;
-  color: #212529;
-}
-
-.card-danger {
-  border-color: #dc3545;
-}
-
-.card-danger .card-header {
-  background-color: #dc3545;
-  color: white;
-}
-
-.card-info {
-  border-color: #17a2b8;
-}
-
-.card-info .card-header {
-  background-color: #17a2b8;
-  color: white;
-}
-
-/* Header */
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #e1e5e9;
-  background-color: #f8f9fa;
-}
-
-.card-title {
-  margin: 0;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.card-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Body */
-.card-body {
-  flex: 1;
-}
-
-/* Footer */
-.card-footer {
-  border-top: 1px solid #e1e5e9;
-  background-color: #f8f9fa;
-}
-
-/* Interactive states */
-.card-hoverable:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.card-clickable {
-  cursor: pointer;
-}
-
-.card-clickable:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
-}
-
-.card-clickable:active {
-  transform: translateY(0);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .card-large .card-header,
-  .card-large .card-body,
-  .card-large .card-footer {
-    padding: 1rem;
-  }
-  
-  .card-medium .card-header,
-  .card-medium .card-body,
-  .card-medium .card-footer {
-    padding: 0.75rem;
-  }
-}
-</style>

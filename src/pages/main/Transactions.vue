@@ -1,74 +1,130 @@
 <template>
-  <div class="transactions-page">
-    <div class="transactions-header">
-      <h1>Transactions</h1>
-      <button class="add-btn" @click="addTransaction">
-        + Add
-      </button>
+  <div class="min-h-screen bg-gray-50 pb-20">
+    <!-- Header -->
+    <div class="bg-white p-6 shadow-sm">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-900">Transactions</h1>
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          @click="addTransaction"
+        >
+          + Add
+        </button>
+      </div>
     </div>
-    
-    <div class="transactions-content">
-      <div class="filter-section">
-        <div class="filter-tabs">
-          <button 
-            class="filter-tab" 
-            :class="{ active: activeFilter === 'all' }"
+
+    <div class="p-6">
+      <!-- Filter Tabs -->
+      <div class="mb-6">
+        <div class="flex bg-white rounded-lg p-1 shadow-sm">
+          <button
+            class="flex-1 py-3 px-4 rounded-md font-medium transition-colors"
+            :class="
+              activeFilter === 'all'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-600 hover:text-gray-900'
+            "
             @click="setFilter('all')"
           >
             All
           </button>
-          <button 
-            class="filter-tab" 
-            :class="{ active: activeFilter === 'income' }"
+          <button
+            class="flex-1 py-3 px-4 rounded-md font-medium transition-colors"
+            :class="
+              activeFilter === 'income'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-600 hover:text-gray-900'
+            "
             @click="setFilter('income')"
           >
             Income
           </button>
-          <button 
-            class="filter-tab" 
-            :class="{ active: activeFilter === 'expense' }"
+          <button
+            class="flex-1 py-3 px-4 rounded-md font-medium transition-colors"
+            :class="
+              activeFilter === 'expense'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-600 hover:text-gray-900'
+            "
             @click="setFilter('expense')"
           >
             Expense
           </button>
         </div>
       </div>
-      
-      <div class="transactions-list">
-        <div class="transaction-item" v-for="transaction in filteredTransactions" :key="transaction.id">
-          <div class="transaction-icon">
-            <span>{{ transaction.category.charAt(0) }}</span>
+
+      <!-- Transactions List -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div
+          v-for="transaction in filteredTransactions"
+          :key="transaction.id"
+          class="flex items-center p-4 border-b border-gray-100 last:border-b-0"
+        >
+          <div
+            class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4"
+          >
+            {{ transaction.category.charAt(0) }}
           </div>
-          <div class="transaction-details">
-            <h3>{{ transaction.description }}</h3>
-            <p>{{ transaction.category }} • {{ transaction.date }}</p>
+          <div class="flex-1">
+            <h3 class="font-medium text-gray-900">
+              {{ transaction.description }}
+            </h3>
+            <p class="text-sm text-gray-500">
+              {{ transaction.category }} • {{ transaction.date }}
+            </p>
           </div>
-          <div class="transaction-amount" :class="transaction.type">
-            {{ transaction.type === 'income' ? '+' : '-' }}${{ transaction.amount }}
+          <div
+            class="font-bold text-lg"
+            :class="
+              transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+            "
+          >
+            {{ transaction.type === 'income' ? '+' : '-' }}${{
+              transaction.amount
+            }}
           </div>
         </div>
-        
-        <div v-if="filteredTransactions.length === 0" class="empty-state">
-          <p>No transactions found</p>
-          <button class="btn-primary" @click="addTransaction">
+
+        <!-- Empty State -->
+        <div v-if="filteredTransactions.length === 0" class="text-center py-12">
+          <p class="text-gray-500 mb-4">No transactions found</p>
+          <button
+            class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            @click="addTransaction"
+          >
             Add Your First Transaction
           </button>
         </div>
       </div>
     </div>
-    
-    <div class="bottom-nav">
-      <nav class="nav-tabs">
-        <router-link to="/dashboard" class="nav-item">
-          Dashboard
+
+    <!-- Bottom Navigation -->
+    <div
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4"
+    >
+      <nav class="flex justify-around">
+        <router-link
+          to="/home"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md"
+        >
+          Home
         </router-link>
-        <router-link to="/transactions" class="nav-item active">
+        <router-link
+          to="/transactions"
+          class="text-blue-600 bg-blue-50 text-sm px-3 py-2 rounded-md"
+        >
           Transactions
         </router-link>
-        <router-link to="/analytics" class="nav-item">
+        <router-link
+          to="/analytics"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md"
+        >
           Analytics
         </router-link>
-        <router-link to="/profile" class="nav-item">
+        <router-link
+          to="/profile"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md"
+        >
           Profile
         </router-link>
       </nav>
@@ -76,219 +132,43 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Transactions',
-  data() {
-    return {
-      activeFilter: 'all',
-      transactions: [
-        {
-          id: 1,
-          description: 'Grocery Shopping',
-          category: 'Food',
-          amount: '85.50',
-          type: 'expense',
-          date: 'Today'
-        },
-        {
-          id: 2,
-          description: 'Salary',
-          category: 'Income',
-          amount: '3000.00',
-          type: 'income',
-          date: 'Yesterday'
-        }
-      ]
-    }
+<script setup>
+import { ref, computed } from 'vue'
+
+const activeFilter = ref('all')
+
+const transactions = ref([
+  {
+    id: 1,
+    description: 'Grocery Shopping',
+    category: 'Food',
+    amount: '85.50',
+    type: 'expense',
+    date: 'Today'
   },
-  computed: {
-    filteredTransactions() {
-      if (this.activeFilter === 'all') {
-        return this.transactions
-      }
-      return this.transactions.filter(t => t.type === this.activeFilter)
-    }
-  },
-  methods: {
-    setFilter(filter) {
-      this.activeFilter = filter
-    },
-    addTransaction() {
-      // TODO: Open add transaction modal
-      console.log('Add transaction')
-    }
+  {
+    id: 2,
+    description: 'Salary',
+    category: 'Income',
+    amount: '3000.00',
+    type: 'income',
+    date: 'Yesterday'
   }
+])
+
+const filteredTransactions = computed(() => {
+  if (activeFilter.value === 'all') {
+    return transactions.value
+  }
+  return transactions.value.filter(t => t.type === activeFilter.value)
+})
+
+const setFilter = filter => {
+  activeFilter.value = filter
+}
+
+const addTransaction = () => {
+  // TODO: Open add transaction modal
+  console.log('Add transaction')
 }
 </script>
-
-<style scoped>
-.transactions-page {
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  padding-bottom: 80px;
-}
-
-.transactions-header {
-  background: white;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.transactions-header h1 {
-  color: #333;
-  margin: 0;
-}
-
-.add-btn {
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.transactions-content {
-  padding: 1.5rem;
-}
-
-.filter-section {
-  margin-bottom: 1.5rem;
-}
-
-.filter-tabs {
-  display: flex;
-  background: white;
-  border-radius: 8px;
-  padding: 0.25rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.filter-tab {
-  flex: 1;
-  background: none;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.filter-tab.active {
-  background: #667eea;
-  color: white;
-}
-
-.transactions-list {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.transaction-item {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.transaction-item:last-child {
-  border-bottom: none;
-}
-
-.transaction-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #667eea;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-right: 1rem;
-}
-
-.transaction-details {
-  flex: 1;
-}
-
-.transaction-details h3 {
-  margin: 0 0 0.25rem 0;
-  color: #333;
-  font-size: 1rem;
-}
-
-.transaction-details p {
-  margin: 0;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.transaction-amount {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.transaction-amount.income {
-  color: #28a745;
-}
-
-.transaction-amount.expense {
-  color: #dc3545;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: #666;
-}
-
-.btn-primary {
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid #eee;
-  padding: 1rem;
-}
-
-.nav-tabs {
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.2s;
-}
-
-.nav-item.active,
-.nav-item:hover {
-  color: #667eea;
-  background: #f0f2ff;
-}
-</style>

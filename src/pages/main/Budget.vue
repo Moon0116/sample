@@ -2,11 +2,9 @@
   <div class="budget-page">
     <div class="budget-header">
       <h1>Budget</h1>
-      <button class="add-btn" @click="addBudget">
-        + Add Budget
-      </button>
+      <button class="add-btn" @click="addBudget">+ Add Budget</button>
     </div>
-    
+
     <div class="budget-content">
       <div class="budget-overview">
         <div class="overview-card">
@@ -23,15 +21,22 @@
           </div>
         </div>
       </div>
-      
+
       <div class="budget-categories">
         <h2>Budget Categories</h2>
-        
+
         <div class="category-list">
-          <div class="category-item" v-for="category in budgetCategories" :key="category.id">
+          <div
+            v-for="category in budgetCategories"
+            :key="category.id"
+            class="category-item"
+          >
             <div class="category-header">
               <div class="category-info">
-                <div class="category-icon" :style="{ background: category.color }">
+                <div
+                  class="category-icon"
+                  :style="{ background: category.color }"
+                >
                   {{ category.icon }}
                 </div>
                 <div class="category-details">
@@ -43,11 +48,11 @@
                 {{ category.percentage }}%
               </div>
             </div>
-            
+
             <div class="category-progress">
               <div class="progress-bar">
-                <div 
-                  class="progress-fill" 
+                <div
+                  class="progress-fill"
                   :class="category.status"
                   :style="{ width: category.percentage + '%' }"
                 ></div>
@@ -56,7 +61,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="budget-tips">
         <h2>Budget Tips</h2>
         <div class="tip-cards">
@@ -67,7 +72,7 @@
               <p>You're doing great! Keep monitoring your spending.</p>
             </div>
           </div>
-          
+
           <div class="tip-card warning">
             <div class="tip-icon">⚠️</div>
             <div class="tip-content">
@@ -78,21 +83,15 @@
         </div>
       </div>
     </div>
-    
+
     <div class="bottom-nav">
       <nav class="nav-tabs">
-        <router-link to="/dashboard" class="nav-item">
-          Dashboard
-        </router-link>
+        <router-link to="/dashboard" class="nav-item"> Dashboard </router-link>
         <router-link to="/transactions" class="nav-item">
           Transactions
         </router-link>
-        <router-link to="/analytics" class="nav-item">
-          Analytics
-        </router-link>
-        <router-link to="/profile" class="nav-item">
-          Profile
-        </router-link>
+        <router-link to="/analytics" class="nav-item"> Analytics </router-link>
+        <router-link to="/profile" class="nav-item"> Profile </router-link>
       </nav>
     </div>
   </div>
@@ -166,7 +165,7 @@ export default {
 .budget-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -199,7 +198,7 @@ export default {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .overview-card h3 {
@@ -267,7 +266,7 @@ export default {
 .category-list {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin-bottom: 2rem;
 }
@@ -353,7 +352,7 @@ export default {
   background: white;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   gap: 1rem;

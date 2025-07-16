@@ -1,29 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="w-full min-h-screen">
     <router-view />
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+// App component using Composition API
 </script>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f5f5f5;
-}
-
-#app {
-  width: 100%;
-  min-height: 100vh;
-}
-</style>

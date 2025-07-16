@@ -8,7 +8,7 @@ export const useSettingsStore = defineStore('settings', {
     theme: 'light',
     dateFormat: 'MM/DD/YYYY',
     numberFormat: 'US',
-    
+
     // Notification Settings
     notifications: {
       pushEnabled: true,
@@ -28,7 +28,7 @@ export const useSettingsStore = defineStore('settings', {
       quietEnd: '08:00',
       weekendNotifications: false
     },
-    
+
     // Privacy & Security Settings
     security: {
       biometricLogin: false,
@@ -44,7 +44,7 @@ export const useSettingsStore = defineStore('settings', {
       secureBackup: true,
       loginHistory: true
     },
-    
+
     // Data Management Settings
     data: {
       autoBackup: true,
@@ -53,7 +53,7 @@ export const useSettingsStore = defineStore('settings', {
       dataRetention: 365, // days
       exportFormat: 'csv' // 'csv', 'json', 'pdf'
     },
-    
+
     // Display Settings
     display: {
       showBalance: true,
@@ -63,56 +63,60 @@ export const useSettingsStore = defineStore('settings', {
       defaultView: 'dashboard', // 'dashboard', 'transactions', 'analytics'
       chartType: 'bar' // 'bar', 'line', 'pie'
     },
-    
+
     loading: false,
     error: null
   }),
 
   getters: {
-    currencySymbol: (state) => {
+    currencySymbol: state => {
       const symbols = {
-        'USD': '$',
-        'EUR': '€',
-        'GBP': '£',
-        'JPY': '¥',
-        'KRW': '₩',
-        'CNY': '¥'
+        USD: '$',
+        EUR: '€',
+        GBP: '£',
+        JPY: '¥',
+        KRW: '₩',
+        CNY: '¥'
       }
       return symbols[state.currency] || '$'
     },
-    
-    languageName: (state) => {
+
+    languageName: state => {
       const languages = {
-        'en': 'English',
-        'ko': '한국어',
-        'ja': '日本語',
-        'zh': '中文',
-        'es': 'Español',
-        'fr': 'Français',
-        'de': 'Deutsch'
+        en: 'English',
+        ko: '한국어',
+        ja: '日本語',
+        zh: '中文',
+        es: 'Español',
+        fr: 'Français',
+        de: 'Deutsch'
       }
       return languages[state.language] || 'English'
     },
-    
-    themeName: (state) => {
+
+    themeName: state => {
       const themes = {
-        'light': 'Light',
-        'dark': 'Dark',
-        'auto': 'Auto'
+        light: 'Light',
+        dark: 'Dark',
+        auto: 'Auto'
       }
       return themes[state.theme] || 'Light'
     },
-    
-    isQuietTime: (state) => {
+
+    isQuietTime: state => {
       const now = new Date()
       const currentTime = now.getHours() * 60 + now.getMinutes()
-      
-      const [quietStartHour, quietStartMin] = state.notifications.quietStart.split(':').map(Number)
-      const [quietEndHour, quietEndMin] = state.notifications.quietEnd.split(':').map(Number)
-      
+
+      const [quietStartHour, quietStartMin] = state.notifications.quietStart
+        .split(':')
+        .map(Number)
+      const [quietEndHour, quietEndMin] = state.notifications.quietEnd
+        .split(':')
+        .map(Number)
+
       const quietStart = quietStartHour * 60 + quietStartMin
       const quietEnd = quietEndHour * 60 + quietEndMin
-      
+
       if (quietStart < quietEnd) {
         return currentTime >= quietStart && currentTime <= quietEnd
       } else {
@@ -120,16 +124,16 @@ export const useSettingsStore = defineStore('settings', {
         return currentTime >= quietStart || currentTime <= quietEnd
       }
     },
-    
-    shouldShowNotification: (state) => {
+
+    shouldShowNotification: state => {
       if (!state.notifications.pushEnabled) return false
       if (state.isQuietTime) return false
-      
+
       const now = new Date()
       const isWeekend = now.getDay() === 0 || now.getDay() === 6
-      
+
       if (isWeekend && !state.notifications.weekendNotifications) return false
-      
+
       return true
     }
   },
@@ -138,7 +142,7 @@ export const useSettingsStore = defineStore('settings', {
     async loadSettings() {
       this.loading = true
       this.error = null
-      
+
       try {
         // Load from localStorage first
         const savedSettings = localStorage.getItem('app-settings')
@@ -146,14 +150,14 @@ export const useSettingsStore = defineStore('settings', {
           const parsed = JSON.parse(savedSettings)
           this.$patch(parsed)
         }
-        
+
         // TODO: Replace with actual API call to sync with server
         const serverSettings = await this.mockLoadSettings()
         if (serverSettings) {
           this.$patch(serverSettings)
           this.saveToLocalStorage()
         }
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -166,14 +170,14 @@ export const useSettingsStore = defineStore('settings', {
     async saveSettings() {
       this.loading = true
       this.error = null
-      
+
       try {
         // Save to localStorage immediately
         this.saveToLocalStorage()
-        
+
         // TODO: Replace with actual API call to sync with server
         await this.mockSaveSettings(this.$state)
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -186,13 +190,13 @@ export const useSettingsStore = defineStore('settings', {
     updateSetting(path, value) {
       const keys = path.split('.')
       let current = this
-      
+
       for (let i = 0; i < keys.length - 1; i++) {
         current = current[keys[i]]
       }
-      
+
       current[keys[keys.length - 1]] = value
-      
+
       // Auto-save to localStorage
       this.saveToLocalStorage()
     },
@@ -200,17 +204,17 @@ export const useSettingsStore = defineStore('settings', {
     async resetSettings() {
       this.loading = true
       this.error = null
-      
+
       try {
         // Reset to default values
         this.$reset()
-        
+
         // Clear localStorage
         localStorage.removeItem('app-settings')
-        
+
         // TODO: Replace with actual API call
         await this.mockResetSettings()
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -225,11 +229,11 @@ export const useSettingsStore = defineStore('settings', {
         const settings = { ...this.$state }
         delete settings.loading
         delete settings.error
-        
+
         const blob = new Blob([JSON.stringify(settings, null, 2)], {
           type: 'application/json'
         })
-        
+
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
@@ -238,7 +242,7 @@ export const useSettingsStore = defineStore('settings', {
         a.click()
         document.body.removeChild(a)
         URL.revokeObjectURL(url)
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -249,20 +253,20 @@ export const useSettingsStore = defineStore('settings', {
     async importSettings(file) {
       this.loading = true
       this.error = null
-      
+
       try {
         const text = await file.text()
         const settings = JSON.parse(text)
-        
+
         // Validate settings structure
         if (!this.validateSettings(settings)) {
           throw new Error('Invalid settings file format')
         }
-        
+
         // Apply settings
         this.$patch(settings)
         this.saveToLocalStorage()
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -278,7 +282,7 @@ export const useSettingsStore = defineStore('settings', {
         localStorage.removeItem('transactions-cache')
         localStorage.removeItem('budgets-cache')
         localStorage.removeItem('goals-cache')
-        
+
         // Clear service worker cache if available
         if ('caches' in window) {
           const cacheNames = await caches.keys()
@@ -286,7 +290,7 @@ export const useSettingsStore = defineStore('settings', {
             cacheNames.map(cacheName => caches.delete(cacheName))
           )
         }
-        
+
         return { success: true }
       } catch (error) {
         this.error = error.message
@@ -307,7 +311,15 @@ export const useSettingsStore = defineStore('settings', {
 
     validateSettings(settings) {
       // Basic validation of settings structure
-      const requiredKeys = ['currency', 'language', 'theme', 'notifications', 'security', 'data', 'display']
+      const requiredKeys = [
+        'currency',
+        'language',
+        'theme',
+        'notifications',
+        'security',
+        'data',
+        'display'
+      ]
       return requiredKeys.every(key => key in settings)
     },
 
@@ -317,7 +329,7 @@ export const useSettingsStore = defineStore('settings', {
 
     // Mock API methods - replace with actual API calls
     async mockLoadSettings() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           // Return null to indicate no server settings available
           resolve(null)
@@ -326,7 +338,7 @@ export const useSettingsStore = defineStore('settings', {
     },
 
     async mockSaveSettings(settings) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           console.log('Settings saved to server:', settings)
           resolve({ success: true })
@@ -335,7 +347,7 @@ export const useSettingsStore = defineStore('settings', {
     },
 
     async mockResetSettings() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })
         }, 500)

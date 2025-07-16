@@ -2,34 +2,32 @@
   <div class="goals-page">
     <div class="goals-header">
       <h1>Goals</h1>
-      <button class="add-btn" @click="addGoal">
-        + Add Goal
-      </button>
+      <button class="add-btn" @click="addGoal">+ Add Goal</button>
     </div>
-    
+
     <div class="goals-content">
       <div class="goals-summary">
         <div class="summary-card">
           <h3>Active Goals</h3>
           <p class="count">{{ activeGoals.length }}</p>
         </div>
-        
+
         <div class="summary-card">
           <h3>Total Target</h3>
           <p class="amount">${{ totalTarget.toLocaleString() }}</p>
         </div>
-        
+
         <div class="summary-card">
           <h3>Total Saved</h3>
           <p class="amount saved">${{ totalSaved.toLocaleString() }}</p>
         </div>
       </div>
-      
+
       <div class="goals-list">
         <h2>Your Goals</h2>
-        
+
         <div class="goal-cards">
-          <div class="goal-card" v-for="goal in goals" :key="goal.id">
+          <div v-for="goal in goals" :key="goal.id" class="goal-card">
             <div class="goal-header">
               <div class="goal-info">
                 <div class="goal-icon">
@@ -44,36 +42,41 @@
                 {{ goal.percentage }}%
               </div>
             </div>
-            
+
             <div class="goal-progress">
               <div class="progress-info">
-                <span class="current">${{ goal.current.toLocaleString() }}</span>
-                <span class="target">/ ${{ goal.target.toLocaleString() }}</span>
+                <span class="current"
+                  >${{ goal.current.toLocaleString() }}</span
+                >
+                <span class="target"
+                  >/ ${{ goal.target.toLocaleString() }}</span
+                >
               </div>
               <div class="progress-bar">
-                <div 
-                  class="progress-fill" 
+                <div
+                  class="progress-fill"
                   :class="goal.status"
                   :style="{ width: goal.percentage + '%' }"
                 ></div>
               </div>
               <div class="goal-meta">
                 <span class="deadline">{{ goal.deadline }}</span>
-                <span class="remaining">${{ (goal.target - goal.current).toLocaleString() }} to go</span>
+                <span class="remaining"
+                  >${{ (goal.target - goal.current).toLocaleString() }} to
+                  go</span
+                >
               </div>
             </div>
-            
+
             <div class="goal-actions">
               <button class="btn-contribute" @click="contributeToGoal(goal.id)">
                 Add Money
               </button>
-              <button class="btn-edit" @click="editGoal(goal.id)">
-                Edit
-              </button>
+              <button class="btn-edit" @click="editGoal(goal.id)">Edit</button>
             </div>
           </div>
         </div>
-        
+
         <div v-if="goals.length === 0" class="empty-state">
           <div class="empty-icon">🎯</div>
           <h3>No Goals Yet</h3>
@@ -84,21 +87,15 @@
         </div>
       </div>
     </div>
-    
+
     <div class="bottom-nav">
       <nav class="nav-tabs">
-        <router-link to="/dashboard" class="nav-item">
-          Dashboard
-        </router-link>
+        <router-link to="/dashboard" class="nav-item"> Dashboard </router-link>
         <router-link to="/transactions" class="nav-item">
           Transactions
         </router-link>
-        <router-link to="/analytics" class="nav-item">
-          Analytics
-        </router-link>
-        <router-link to="/profile" class="nav-item">
-          Profile
-        </router-link>
+        <router-link to="/analytics" class="nav-item"> Analytics </router-link>
+        <router-link to="/profile" class="nav-item"> Profile </router-link>
       </nav>
     </div>
   </div>
@@ -184,7 +181,7 @@ export default {
 .goals-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -220,7 +217,7 @@ export default {
   background: white;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -265,7 +262,7 @@ export default {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .goal-header {

@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run format
+# ESLint check (warnings only, don't fail on errors during development)
+npm run lint:check || echo "ESLint found issues, but allowing commit for development"

@@ -17,67 +17,67 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
-import { useAnalysisStore } from '@/store/analysisStore';
-import { useTransactionUtils } from '@/composables/useTransactionUtils';
+import { onMounted, computed } from 'vue'
+import { useAnalysisStore } from '@/store/analysisStore'
+import { useTransactionUtils } from '@/composables/useTransactionUtils'
 
 // ECharts 설정
-import { use } from 'echarts/core';
-import { PieChart } from 'echarts/charts';
+import { use } from 'echarts/core'
+import { PieChart } from 'echarts/charts'
 import {
   TitleComponent,
   TooltipComponent,
-  LegendComponent,
-} from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
+  LegendComponent
+} from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
 
 use([
   PieChart,
   TitleComponent,
   TooltipComponent,
   LegendComponent,
-  CanvasRenderer,
-]);
+  CanvasRenderer
+])
 
 // 분석 스토어
-const analysis = useAnalysisStore();
+const analysis = useAnalysisStore()
 // 트랜잭션 유틸리티 사용
-const utils = useTransactionUtils();
+const utils = useTransactionUtils()
 
 // 데이터 로딩
 onMounted(() => {
-  analysis.fetchAnalysisData();
-});
+  analysis.fetchAnalysisData()
+})
 
 // 카테고리별 수입 요약 (ECharts 데이터용)
 const incomeByCategory = computed(() => {
-  const result = {};
-  analysis.thisMonthIncomes.forEach((t) => {
-    result[t.categoryId] = (result[t.categoryId] || 0) + t.amount;
-  });
+  const result = {}
+  analysis.thisMonthIncomes.forEach(t => {
+    result[t.categoryId] = (result[t.categoryId] || 0) + t.amount
+  })
 
   return Object.entries(result).map(([id, amount]) => ({
     name: utils.getCategoryName(id),
-    value: amount,
-  }));
-});
+    value: amount
+  }))
+})
 
 // 가장 많이 들어온 수입 카테고리
-const topCategory = computed(() => analysis.topIncomeCategory);
+const topCategory = computed(() => analysis.topIncomeCategory)
 
 // 차트 옵션
 const option = computed(() => ({
   title: {
     text: '이번 달 수입 패턴 분석',
-    left: 'center',
+    left: 'center'
   },
   tooltip: {
     trigger: 'item',
-    formatter: '{b}: {c}원 ({d}%)',
+    formatter: '{b}: {c}원 ({d}%)'
   },
   legend: {
     bottom: 10,
-    left: 'center',
+    left: 'center'
   },
   series: [
     {
@@ -88,15 +88,15 @@ const option = computed(() => ({
         itemStyle: {
           shadowBlur: 10,
           shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
-        },
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
       },
       label: {
-        formatter: '{b}: {d}%',
-      },
-    },
-  ],
-}));
+        formatter: '{b}: {d}%'
+      }
+    }
+  ]
+}))
 </script>
 <style scoped>
 .summary-message {

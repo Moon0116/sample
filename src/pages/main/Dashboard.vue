@@ -1,66 +1,92 @@
 <template>
-  <div class="dashboard-page">
-    <div class="dashboard-header">
-      <h1>Dashboard</h1>
-      <div class="user-info">
+  <div class="min-h-screen bg-gray-50 pb-20">
+    <div class="bg-white p-6 shadow-sm flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+      <div class="text-gray-600">
         <span>Welcome back!</span>
       </div>
     </div>
-    
-    <div class="dashboard-content">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <h3>Total Balance</h3>
-          <p class="amount">$0.00</p>
+
+    <div class="p-6">
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <h3 class="text-gray-600 text-sm font-medium mb-2">Total Balance</h3>
+          <p class="text-2xl font-bold text-gray-900">$0.00</p>
         </div>
-        
-        <div class="stat-card">
-          <h3>This Month</h3>
-          <p class="amount income">+$0.00</p>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <h3 class="text-gray-600 text-sm font-medium mb-2">This Month</h3>
+          <p class="text-2xl font-bold text-green-600">+$0.00</p>
         </div>
-        
-        <div class="stat-card">
-          <h3>Expenses</h3>
-          <p class="amount expense">-$0.00</p>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <h3 class="text-gray-600 text-sm font-medium mb-2">Expenses</h3>
+          <p class="text-2xl font-bold text-red-600">-$0.00</p>
         </div>
-        
-        <div class="stat-card">
-          <h3>Savings</h3>
-          <p class="amount">$0.00</p>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <h3 class="text-gray-600 text-sm font-medium mb-2">Savings</h3>
+          <p class="text-2xl font-bold text-gray-900">$0.00</p>
         </div>
       </div>
-      
-      <div class="quick-actions">
-        <h2>Quick Actions</h2>
-        <div class="action-buttons">
-          <button class="action-btn" @click="goToTransactions">
+
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            class="bg-blue-600 text-white p-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            @click="goToTransactions"
+          >
             View Transactions
           </button>
-          <button class="action-btn" @click="goToAnalytics">
+          <button
+            class="bg-blue-600 text-white p-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            @click="goToAnalytics"
+          >
             Analytics
           </button>
-          <button class="action-btn" @click="goToBudget">
+          <button
+            class="bg-blue-600 text-white p-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            @click="goToBudget"
+          >
             Budget
           </button>
-          <button class="action-btn" @click="goToGoals">
+          <button
+            class="bg-blue-600 text-white p-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            @click="goToGoals"
+          >
             Goals
           </button>
         </div>
       </div>
     </div>
-    
-    <div class="bottom-nav">
-      <nav class="nav-tabs">
-        <router-link to="/dashboard" class="nav-item active">
+
+    <div
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4"
+    >
+      <nav class="flex justify-around">
+        <router-link
+          to="/dashboard"
+          class="text-blue-600 bg-blue-50 text-sm px-3 py-2 rounded-md transition-all"
+        >
           Dashboard
         </router-link>
-        <router-link to="/transactions" class="nav-item">
+        <router-link
+          to="/transactions"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md hover:text-blue-600 hover:bg-blue-50 transition-all"
+        >
           Transactions
         </router-link>
-        <router-link to="/analytics" class="nav-item">
+        <router-link
+          to="/analytics"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md hover:text-blue-600 hover:bg-blue-50 transition-all"
+        >
           Analytics
         </router-link>
-        <router-link to="/profile" class="nav-item">
+        <router-link
+          to="/profile"
+          class="text-gray-600 text-sm px-3 py-2 rounded-md hover:text-blue-600 hover:bg-blue-50 transition-all"
+        >
           Profile
         </router-link>
       </nav>
@@ -68,153 +94,24 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Dashboard',
-  methods: {
-    goToTransactions() {
-      this.$router.push('/transactions')
-    },
-    goToAnalytics() {
-      this.$router.push('/analytics')
-    },
-    goToBudget() {
-      this.$router.push('/budget')
-    },
-    goToGoals() {
-      this.$router.push('/goals')
-    }
-  }
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToTransactions = () => {
+  router.push('/transactions')
+}
+
+const goToAnalytics = () => {
+  router.push('/analytics')
+}
+
+const goToBudget = () => {
+  router.push('/budget')
+}
+
+const goToGoals = () => {
+  router.push('/goals')
 }
 </script>
-
-<style scoped>
-.dashboard-page {
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  padding-bottom: 80px;
-}
-
-.dashboard-header {
-  background: white;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dashboard-header h1 {
-  color: #333;
-  margin: 0;
-}
-
-.user-info {
-  color: #666;
-}
-
-.dashboard-content {
-  padding: 1.5rem;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.stat-card h3 {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.amount {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-}
-
-.amount.income {
-  color: #28a745;
-}
-
-.amount.expense {
-  color: #dc3545;
-}
-
-.quick-actions {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.quick-actions h2 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.action-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.action-btn {
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.action-btn:hover {
-  background: #5a6fd8;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid #eee;
-  padding: 1rem;
-}
-
-.nav-tabs {
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.2s;
-}
-
-.nav-item.active,
-.nav-item:hover {
-  color: #667eea;
-  background: #f0f2ff;
-}
-</style>

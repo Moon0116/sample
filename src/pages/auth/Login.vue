@@ -1,164 +1,83 @@
 <template>
-  <div class="login-page">
-    <div class="login-container">
-      <div class="header">
-        <h1>Login</h1>
-        <p>Welcome back</p>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Login</h1>
+        <p class="text-gray-600">Welcome back</p>
       </div>
-      
-      <form class="login-form" @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label>Email</label>
-          <input 
-            type="email" 
-            v-model="email" 
+
+      <form class="space-y-6" @submit.prevent="handleLogin">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Email</label
+          >
+          <input
+            v-model="email"
+            type="email"
             placeholder="Enter your email"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <div class="form-group">
-          <label>Password</label>
-          <input 
-            type="password" 
-            v-model="password" 
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Password</label
+          >
+          <input
+            v-model="password"
+            type="password"
             placeholder="Enter your password"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <div class="form-actions">
-          <router-link to="/forgot-password" class="forgot-link">
+
+        <div class="text-right">
+          <router-link
+            to="/forgot-password"
+            class="text-blue-600 hover:text-blue-700 text-sm"
+          >
             Forgot Password?
           </router-link>
         </div>
-        
-        <button type="submit" class="btn-login">
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
           Login
         </button>
       </form>
-      
-      <div class="signup-link">
-        <p>Don't have an account? 
-          <router-link to="/register">Sign up</router-link>
+
+      <div class="text-center mt-6 text-gray-600">
+        <p>
+          Don't have an account?
+          <router-link to="/register" class="text-blue-600 hover:text-blue-700"
+            >Sign up</router-link
+          >
         </p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Login',
-  data() {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    handleLogin() {
-      // TODO: Implement login logic
-      console.log('Login attempt:', { email: this.email, password: this.password })
-      // For now, redirect to dashboard
-      this.$router.push('/dashboard')
-    }
-  }
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const email = ref('')
+const password = ref('')
+
+const handleLogin = () => {
+  // TODO: Implement login logic
+  console.log('Login attempt:', {
+    email: email.value,
+    password: password.value
+  })
+  // For now, redirect to dashboard
+  router.push('/dashboard')
 }
 </script>
-
-<style scoped>
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f8f9fa;
-}
-
-.login-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.header h1 {
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.header p {
-  color: #666;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-.form-actions {
-  text-align: right;
-  margin-bottom: 1.5rem;
-}
-
-.forgot-link {
-  color: #667eea;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.btn-login {
-  width: 100%;
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-login:hover {
-  background: #5a6fd8;
-}
-
-.signup-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: #666;
-}
-
-.signup-link a {
-  color: #667eea;
-  text-decoration: none;
-}
-</style>

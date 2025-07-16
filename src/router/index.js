@@ -7,6 +7,7 @@ import Register from '../pages/auth/Register.vue'
 import ForgotPassword from '../pages/auth/ForgotPassword.vue'
 
 // Main App Pages
+import Home from '../pages/main/Home.vue'
 import Dashboard from '../pages/main/Dashboard.vue'
 import Transactions from '../pages/main/Transactions.vue'
 import Analytics from '../pages/main/Analytics.vue'
@@ -32,7 +33,7 @@ const routes = [
     name: 'Welcome',
     component: Welcome
   },
-  
+
   // Auth Flow
   {
     path: '/login',
@@ -49,8 +50,13 @@ const routes = [
     name: 'ForgotPassword',
     component: ForgotPassword
   },
-  
+
   // Main App
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
+  },
   {
     path: '/dashboard',
     name: 'Dashboard',
@@ -81,7 +87,7 @@ const routes = [
     name: 'Categories',
     component: Categories
   },
-  
+
   // Detail Pages (to be implemented later)
   // {
   //   path: '/transaction/:id',
@@ -98,7 +104,7 @@ const routes = [
   //   name: 'BudgetDetail',
   //   component: BudgetDetail
   // },
-  
+
   // Profile & Settings
   {
     path: '/profile',

@@ -1,8 +1,8 @@
 <template>
   <div class="bottom-navigation">
     <nav class="nav-container">
-      <router-link 
-        v-for="item in navItems" 
+      <router-link
+        v-for="item in navItems"
         :key="item.name"
         :to="item.path"
         class="nav-item"
@@ -67,7 +67,7 @@ export default {
   right: 0;
   background: white;
   border-top: 1px solid #e0e0e0;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -109,7 +109,7 @@ export default {
   .nav-label {
     font-size: 0.7rem;
   }
-  
+
   .nav-icon {
     font-size: 1.3rem;
   }

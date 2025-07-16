@@ -1,13 +1,11 @@
 <template>
   <div class="notifications-page">
     <div class="notifications-header">
-      <button class="back-btn" @click="goBack">
-        ← Back
-      </button>
+      <button class="back-btn" @click="goBack">← Back</button>
       <h1>Notifications</h1>
       <div></div>
     </div>
-    
+
     <div class="notifications-content">
       <div class="notifications-section">
         <h2>Push Notifications</h2>
@@ -18,14 +16,18 @@
               <p>Allow the app to send notifications to your device</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.pushEnabled" @change="togglePushNotifications" />
+              <input
+                v-model="notifications.pushEnabled"
+                type="checkbox"
+                @change="togglePushNotifications"
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
-      <div class="notifications-section" v-if="notifications.pushEnabled">
+
+      <div v-if="notifications.pushEnabled" class="notifications-section">
         <h2>Transaction Alerts</h2>
         <div class="notifications-group">
           <div class="notification-item">
@@ -34,11 +36,11 @@
               <p>Get notified when new transactions are added</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.newTransactions" />
+              <input v-model="notifications.newTransactions" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Large Expenses</h3>
@@ -46,33 +48,33 @@
             </div>
             <div class="notification-controls">
               <label class="toggle-switch">
-                <input type="checkbox" v-model="notifications.largeExpenses" />
+                <input v-model="notifications.largeExpenses" type="checkbox" />
                 <span class="toggle-slider"></span>
               </label>
-              <input 
-                v-if="notifications.largeExpenses" 
-                type="number" 
-                v-model="notifications.expenseThreshold" 
+              <input
+                v-if="notifications.largeExpenses"
+                v-model="notifications.expenseThreshold"
+                type="number"
                 class="threshold-input"
                 placeholder="Amount"
               />
             </div>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Daily Summary</h3>
               <p>Daily spending summary at end of day</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.dailySummary" />
+              <input v-model="notifications.dailySummary" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
-      <div class="notifications-section" v-if="notifications.pushEnabled">
+
+      <div v-if="notifications.pushEnabled" class="notifications-section">
         <h2>Budget & Goals</h2>
         <div class="notifications-group">
           <div class="notification-item">
@@ -82,10 +84,14 @@
             </div>
             <div class="notification-controls">
               <label class="toggle-switch">
-                <input type="checkbox" v-model="notifications.budgetWarnings" />
+                <input v-model="notifications.budgetWarnings" type="checkbox" />
                 <span class="toggle-slider"></span>
               </label>
-              <select v-if="notifications.budgetWarnings" v-model="notifications.budgetThreshold" class="threshold-select">
+              <select
+                v-if="notifications.budgetWarnings"
+                v-model="notifications.budgetThreshold"
+                class="threshold-select"
+              >
                 <option value="50">50%</option>
                 <option value="75">75%</option>
                 <option value="90">90%</option>
@@ -93,42 +99,42 @@
               </select>
             </div>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Budget Exceeded</h3>
               <p>Alert when budget is exceeded</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.budgetExceeded" />
+              <input v-model="notifications.budgetExceeded" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Goal Milestones</h3>
               <p>Celebrate when reaching goal milestones</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.goalMilestones" />
+              <input v-model="notifications.goalMilestones" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Goal Reminders</h3>
               <p>Weekly reminders about your goals</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.goalReminders" />
+              <input v-model="notifications.goalReminders" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <div class="notifications-section">
         <h2>Email Notifications</h2>
         <div class="notifications-group">
@@ -138,35 +144,39 @@
               <p>Receive weekly spending reports via email</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.weeklyReports" />
+              <input v-model="notifications.weeklyReports" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Monthly Reports</h3>
               <p>Receive monthly financial summaries</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.monthlyReports" />
+              <input v-model="notifications.monthlyReports" type="checkbox" />
               <span class="toggle-slider"></span>
             </label>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Security Alerts</h3>
               <p>Important security notifications</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.securityAlerts" disabled />
+              <input
+                v-model="notifications.securityAlerts"
+                type="checkbox"
+                disabled
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <div class="notifications-section">
         <h2>Notification Schedule</h2>
         <div class="notifications-group">
@@ -176,25 +186,36 @@
               <p>Don't send notifications during these hours</p>
             </div>
             <div class="time-controls">
-              <input type="time" v-model="notifications.quietStart" class="time-input" />
+              <input
+                v-model="notifications.quietStart"
+                type="time"
+                class="time-input"
+              />
               <span>to</span>
-              <input type="time" v-model="notifications.quietEnd" class="time-input" />
+              <input
+                v-model="notifications.quietEnd"
+                type="time"
+                class="time-input"
+              />
             </div>
           </div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <h3>Weekend Notifications</h3>
               <p>Receive notifications on weekends</p>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" v-model="notifications.weekendNotifications" />
+              <input
+                v-model="notifications.weekendNotifications"
+                type="checkbox"
+              />
               <span class="toggle-slider"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <div class="save-section">
         <button class="save-btn" @click="saveNotificationSettings">
           Save Settings
@@ -255,7 +276,11 @@ export default {
       alert('Notification settings saved successfully!')
     },
     testNotification() {
-      if (this.notifications.pushEnabled && 'Notification' in window && Notification.permission === 'granted') {
+      if (
+        this.notifications.pushEnabled &&
+        'Notification' in window &&
+        Notification.permission === 'granted'
+      ) {
         new Notification('Test Notification', {
           body: 'This is a test notification from your finance app!',
           icon: '/favicon.ico'
@@ -277,7 +302,7 @@ export default {
 .notifications-header {
   background: white;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -316,7 +341,7 @@ export default {
 .notifications-group {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -382,7 +407,7 @@ export default {
 
 .toggle-slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 3px;

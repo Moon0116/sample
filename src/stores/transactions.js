@@ -6,19 +6,85 @@ export const useTransactionsStore = defineStore('transactions', {
     categories: [
       // Income categories
       { id: 1, name: 'Salary', type: 'income', color: '#28a745', icon: '💼' },
-      { id: 2, name: 'Freelance', type: 'income', color: '#17a2b8', icon: '💻' },
-      { id: 3, name: 'Investment', type: 'income', color: '#6f42c1', icon: '📈' },
-      { id: 4, name: 'Other Income', type: 'income', color: '#20c997', icon: '💰' },
-      
+      {
+        id: 2,
+        name: 'Freelance',
+        type: 'income',
+        color: '#17a2b8',
+        icon: '💻'
+      },
+      {
+        id: 3,
+        name: 'Investment',
+        type: 'income',
+        color: '#6f42c1',
+        icon: '📈'
+      },
+      {
+        id: 4,
+        name: 'Other Income',
+        type: 'income',
+        color: '#20c997',
+        icon: '💰'
+      },
+
       // Expense categories
-      { id: 5, name: 'Food & Dining', type: 'expense', color: '#fd7e14', icon: '🍽️' },
-      { id: 6, name: 'Transportation', type: 'expense', color: '#6610f2', icon: '🚗' },
-      { id: 7, name: 'Shopping', type: 'expense', color: '#e83e8c', icon: '🛍️' },
-      { id: 8, name: 'Entertainment', type: 'expense', color: '#20c997', icon: '🎬' },
-      { id: 9, name: 'Bills & Utilities', type: 'expense', color: '#dc3545', icon: '⚡' },
-      { id: 10, name: 'Healthcare', type: 'expense', color: '#198754', icon: '🏥' },
-      { id: 11, name: 'Education', type: 'expense', color: '#0d6efd', icon: '📚' },
-      { id: 12, name: 'Other Expense', type: 'expense', color: '#6c757d', icon: '📝' }
+      {
+        id: 5,
+        name: 'Food & Dining',
+        type: 'expense',
+        color: '#fd7e14',
+        icon: '🍽️'
+      },
+      {
+        id: 6,
+        name: 'Transportation',
+        type: 'expense',
+        color: '#6610f2',
+        icon: '🚗'
+      },
+      {
+        id: 7,
+        name: 'Shopping',
+        type: 'expense',
+        color: '#e83e8c',
+        icon: '🛍️'
+      },
+      {
+        id: 8,
+        name: 'Entertainment',
+        type: 'expense',
+        color: '#20c997',
+        icon: '🎬'
+      },
+      {
+        id: 9,
+        name: 'Bills & Utilities',
+        type: 'expense',
+        color: '#dc3545',
+        icon: '⚡'
+      },
+      {
+        id: 10,
+        name: 'Healthcare',
+        type: 'expense',
+        color: '#198754',
+        icon: '🏥'
+      },
+      {
+        id: 11,
+        name: 'Education',
+        type: 'expense',
+        color: '#0d6efd',
+        icon: '📚'
+      },
+      {
+        id: 12,
+        name: 'Other Expense',
+        type: 'expense',
+        color: '#6c757d',
+        icon: '📝'
+      }
     ],
     loading: false,
     error: null,
@@ -37,68 +103,78 @@ export const useTransactionsStore = defineStore('transactions', {
   }),
 
   getters: {
-    filteredTransactions: (state) => {
+    filteredTransactions: state => {
       let filtered = [...state.transactions]
-      
+
       // Filter by type
       if (state.filters.type !== 'all') {
         filtered = filtered.filter(t => t.type === state.filters.type)
       }
-      
+
       // Filter by category
       if (state.filters.category) {
         filtered = filtered.filter(t => t.categoryId === state.filters.category)
       }
-      
+
       // Filter by date range
       if (state.filters.dateRange.start) {
-        filtered = filtered.filter(t => new Date(t.date) >= new Date(state.filters.dateRange.start))
+        filtered = filtered.filter(
+          t => new Date(t.date) >= new Date(state.filters.dateRange.start)
+        )
       }
       if (state.filters.dateRange.end) {
-        filtered = filtered.filter(t => new Date(t.date) <= new Date(state.filters.dateRange.end))
+        filtered = filtered.filter(
+          t => new Date(t.date) <= new Date(state.filters.dateRange.end)
+        )
       }
-      
+
       // Filter by amount range
       if (state.filters.amountRange.min) {
-        filtered = filtered.filter(t => t.amount >= state.filters.amountRange.min)
+        filtered = filtered.filter(
+          t => t.amount >= state.filters.amountRange.min
+        )
       }
       if (state.filters.amountRange.max) {
-        filtered = filtered.filter(t => t.amount <= state.filters.amountRange.max)
+        filtered = filtered.filter(
+          t => t.amount <= state.filters.amountRange.max
+        )
       }
-      
+
       return filtered.sort((a, b) => new Date(b.date) - new Date(a.date))
     },
-    
-    totalIncome: (state) => {
+
+    totalIncome: state => {
       return state.transactions
         .filter(t => t.type === 'income')
         .reduce((sum, t) => sum + t.amount, 0)
     },
-    
-    totalExpenses: (state) => {
+
+    totalExpenses: state => {
       return state.transactions
         .filter(t => t.type === 'expense')
         .reduce((sum, t) => sum + t.amount, 0)
     },
-    
-    balance: (state) => {
+
+    balance: state => {
       return state.transactions.reduce((balance, t) => {
         return t.type === 'income' ? balance + t.amount : balance - t.amount
       }, 0)
     },
-    
-    recentTransactions: (state) => {
+
+    recentTransactions: state => {
       return state.transactions
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 10)
     },
-    
-    expensesByCategory: (state) => {
+
+    expensesByCategory: state => {
       const expenses = state.transactions.filter(t => t.type === 'expense')
       const categoryTotals = {}
-      
+
       expenses.forEach(transaction => {
-        const category = state.categories.find(c => c.id === transaction.categoryId)
+        const category = state.categories.find(
+          c => c.id === transaction.categoryId
+        )
         if (category) {
           if (!categoryTotals[category.name]) {
             categoryTotals[category.name] = {
@@ -111,19 +187,21 @@ export const useTransactionsStore = defineStore('transactions', {
           categoryTotals[category.name].amount += transaction.amount
         }
       })
-      
+
       return Object.values(categoryTotals).sort((a, b) => b.amount - a.amount)
     },
-    
-    incomeCategories: (state) => state.categories.filter(c => c.type === 'income'),
-    expenseCategories: (state) => state.categories.filter(c => c.type === 'expense')
+
+    incomeCategories: state =>
+      state.categories.filter(c => c.type === 'income'),
+    expenseCategories: state =>
+      state.categories.filter(c => c.type === 'expense')
   },
 
   actions: {
     async fetchTransactions() {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const transactions = await this.mockFetchTransactions()
@@ -140,7 +218,7 @@ export const useTransactionsStore = defineStore('transactions', {
     async addTransaction(transactionData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const transaction = await this.mockAddTransaction(transactionData)
@@ -157,10 +235,13 @@ export const useTransactionsStore = defineStore('transactions', {
     async updateTransaction(id, transactionData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
-        const transaction = await this.mockUpdateTransaction(id, transactionData)
+        const transaction = await this.mockUpdateTransaction(
+          id,
+          transactionData
+        )
         const index = this.transactions.findIndex(t => t.id === id)
         if (index !== -1) {
           this.transactions[index] = transaction
@@ -177,7 +258,7 @@ export const useTransactionsStore = defineStore('transactions', {
     async deleteTransaction(id) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         await this.mockDeleteTransaction(id)
@@ -194,7 +275,7 @@ export const useTransactionsStore = defineStore('transactions', {
     async addCategory(categoryData) {
       this.loading = true
       this.error = null
-      
+
       try {
         // TODO: Replace with actual API call
         const category = await this.mockAddCategory(categoryData)
@@ -233,7 +314,7 @@ export const useTransactionsStore = defineStore('transactions', {
 
     // Mock API methods - replace with actual API calls
     async mockFetchTransactions() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const mockTransactions = [
             {
@@ -270,7 +351,7 @@ export const useTransactionsStore = defineStore('transactions', {
     },
 
     async mockAddTransaction(transactionData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const transaction = {
             id: Date.now(),
@@ -283,7 +364,7 @@ export const useTransactionsStore = defineStore('transactions', {
     },
 
     async mockUpdateTransaction(id, transactionData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const transaction = {
             id,
@@ -296,7 +377,7 @@ export const useTransactionsStore = defineStore('transactions', {
     },
 
     async mockDeleteTransaction(id) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({ success: true })
         }, 500)
@@ -304,7 +385,7 @@ export const useTransactionsStore = defineStore('transactions', {
     },
 
     async mockAddCategory(categoryData) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           const category = {
             id: Date.now(),

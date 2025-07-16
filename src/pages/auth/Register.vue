@@ -1,179 +1,109 @@
 <template>
-  <div class="register-page">
-    <div class="register-container">
-      <div class="header">
-        <h1>Sign Up</h1>
-        <p>Create your account</p>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Sign Up</h1>
+        <p class="text-gray-600">Create your account</p>
       </div>
-      
-      <form class="register-form" @submit.prevent="handleRegister">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input 
-            type="text" 
-            v-model="fullName" 
+
+      <form class="space-y-6" @submit.prevent="handleRegister">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Full Name</label
+          >
+          <input
+            v-model="fullName"
+            type="text"
             placeholder="Enter your full name"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <div class="form-group">
-          <label>Email</label>
-          <input 
-            type="email" 
-            v-model="email" 
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Email</label
+          >
+          <input
+            v-model="email"
+            type="email"
             placeholder="Enter your email"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <div class="form-group">
-          <label>Password</label>
-          <input 
-            type="password" 
-            v-model="password" 
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Password</label
+          >
+          <input
+            v-model="password"
+            type="password"
             placeholder="Create a password"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <div class="form-group">
-          <label>Confirm Password</label>
-          <input 
-            type="password" 
-            v-model="confirmPassword" 
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2"
+            >Confirm Password</label
+          >
+          <input
+            v-model="confirmPassword"
+            type="password"
             placeholder="Confirm your password"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
-        
-        <button type="submit" class="btn-register">
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
           Create Account
         </button>
       </form>
-      
-      <div class="login-link">
-        <p>Already have an account? 
-          <router-link to="/login">Sign in</router-link>
+
+      <div class="text-center mt-6 text-gray-600">
+        <p>
+          Already have an account?
+          <router-link to="/login" class="text-blue-600 hover:text-blue-700"
+            >Sign in</router-link
+          >
         </p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Register',
-  data() {
-    return {
-      fullName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
-  },
-  methods: {
-    handleRegister() {
-      if (this.password !== this.confirmPassword) {
-        alert('Passwords do not match')
-        return
-      }
-      
-      // TODO: Implement registration logic
-      console.log('Registration attempt:', {
-        fullName: this.fullName,
-        email: this.email,
-        password: this.password
-      })
-      
-      // For now, redirect to dashboard
-      this.$router.push('/dashboard')
-    }
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const fullName = ref('')
+const email = ref('')
+const password = ref('')
+const confirmPassword = ref('')
+
+const handleRegister = () => {
+  if (password.value !== confirmPassword.value) {
+    alert('Passwords do not match')
+    return
   }
+
+  // TODO: Implement registration logic
+  console.log('Registration attempt:', {
+    fullName: fullName.value,
+    email: email.value,
+    password: password.value
+  })
+
+  // For now, redirect to dashboard
+  router.push('/dashboard')
 }
 </script>
-
-<style scoped>
-.register-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f8f9fa;
-}
-
-.register-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.header h1 {
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.header p {
-  color: #666;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-.btn-register {
-  width: 100%;
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-register:hover {
-  background: #5a6fd8;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: #666;
-}
-
-.login-link a {
-  color: #667eea;
-  text-decoration: none;
-}
-</style>
